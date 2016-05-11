@@ -9,9 +9,47 @@ use App\Http\Requests;
 class IndexController extends Controller
 {
     //
+    
 
     public function __construct()
     {
     }
+
+    public function index()
+    {
+
+    }
+
+    public function create()
+    {
+
+    }
+
+    public function show()
+    {
+
+    }
+
+    public function store()
+    {
+
+    }
+
+    public function edit()
+    {
+
+    }
+
+    public function update()
+    {
+
+    }
+
+    public function destory()
+    {
+
+    }
+
+
 
 }

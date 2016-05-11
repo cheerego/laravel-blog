@@ -35,3 +35,5 @@ Route::auth();
 
 
 Route::get('/home', 'HomeController@index');
+Route::get('/admin', 'Admin\IndexController@index');
+Route::resource('photos', 'IndexController');

@@ -122,7 +122,7 @@ return [
     */
 
     'providers' => [
-
+//        Illuminate\Html\HtmlServiceProvider::class,
         /*
          * Laravel Framework Service Providers...
          */
@@ -170,7 +170,8 @@ return [
     */
 
     'aliases' => [
-
+//        'Form'=>Illuminate\Html\FormFacade::class,
+//        'Html'=>Illuminate\Html\HtmlFacade::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,

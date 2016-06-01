@@ -12,13 +12,14 @@
 @section('content')
     <form action="{{ action('ArticlesController@store') }}" method="post" enctype="multipart/form-data">
         <input type="text" placeholder="Title" class="form-control" name="title" required value="{{ old('title') }}">
-        <textarea id="editor" placeholder="Balabala" autofocus required name="content" value="{{ old('content') }}"></textarea>
         类别:
         <select class="form-control" name="category" id="">
-            <option value="">1</option>
-            <option value="">2</option>
-            <option value="">3</option>
+            @foreach($categorys as $category )
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
         </select>
+        <textarea id="editor" placeholder="Balabala" autofocus required name="content" value="{{ old('content') }}"></textarea>
+
         <input type="submit" value="Submit" class="btn btn-block btn-success btn-raised">
         {{ csrf_field() }}
         {{ method_field('POST') }}

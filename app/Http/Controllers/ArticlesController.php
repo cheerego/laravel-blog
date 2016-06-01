@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Http\Request;
 
@@ -36,7 +37,9 @@ class ArticlesController extends Controller
 
     public function create()
     {
-        return view('articles.editor');
+        $categorys = Category::all();
+        
+        return view('articles.create')->with(['categorys' => $categorys]);
     }
 
     public function update()
@@ -57,12 +60,6 @@ class ArticlesController extends Controller
     public function edit()
     {
 
-    }
-
-    public function editor()
-    {
-
-        return view('articles.editor');
     }
 
     /**

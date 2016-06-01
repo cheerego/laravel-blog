@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('bower_components') }}/bootstrap-material-design/dist/css/bootstrap-material-design.css">
     <link rel="stylesheet" href="{{ asset('bower_components') }}/bootstrap-material-design/dist/css/ripples.css">
     <link href="{{ asset('bower_components') }}/snackbarjs/dist/snackbar.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('bower_components') }}/nprogress/nprogress.css">
     <style>
         body {
             width: 1210px;
@@ -20,7 +21,7 @@
     </style>
 </head>
 <body style="background-image:url(../image/background.png);background-position:center; background-repeat:repeat">
-<header>
+<header style="margin-top: 2px">
     <div class="navbar navbar-info ">
         <div class="container-fluid margin">
             <div class="navbar-header">
@@ -81,9 +82,14 @@
 <script src="{{ asset('bower_components') }}/bootstrap-material-design/dist/js/material.js"></script>
 <script src="{{ asset('bower_components') }}/bootstrap-material-design/dist/js/ripples.js"></script>
 <script src="{{ asset('bower_components') }}/snackbarjs/dist/snackbar.min.js"></script>
-
+<script src="{{ asset('bower_components') }}/nprogress/nprogress.js"></script>
 <script !src="">
-
+    $(document).ready(function () {
+        NProgress.start();
+    });
+    window.onload = function () {
+        NProgress.done(false);
+    };
     $(function () {
         $.material.init();
         var jokes = [

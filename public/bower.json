@@ -18,6 +18,8 @@
     "jquery": "^2.2.3",
     "bootstrap-material-design": "^0.5.9",
     "snackbarjs": "https://github.com/FezVrasta/snackbarjs.git#^1.1.0",
-    "simditor": "^2.3.6"
+    "simditor": "^2.3.6",
+    "nprogress": "^0.2.0",
+    "pjax": "https://github.com/welefen/pjax.git"
   }
 }

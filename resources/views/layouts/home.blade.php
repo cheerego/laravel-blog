@@ -10,10 +10,10 @@
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
     <link href="//apps.bdimg.com/libs/fontawesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('bower_components') }}/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet"
-          href="{{ asset('bower_components') }}/bootstrap-material-design/dist/css/bootstrap-material-design.css">
+    <link rel="stylesheet" href="{{ asset('bower_components') }}/bootstrap-material-design/dist/css/bootstrap-material-design.css">
     <link rel="stylesheet" href="{{ asset('bower_components') }}/bootstrap-material-design/dist/css/ripples.css">
     <link href="{{ asset('bower_components') }}/snackbarjs/dist/snackbar.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('bower_components') }}/nprogress/nprogress.css">
     @yield('scripttop')
     <style>
         body {
@@ -24,7 +24,7 @@
     </style>
 </head>
 <body>
-<header>
+<header style="margin-top: 2px">
     <div class="navbar navbar-info ">
         <div class="container-fluid margin">
             <div class="navbar-header">
@@ -96,8 +96,15 @@
 <script src="{{ asset('bower_components') }}/bootstrap-material-design/dist/js/material.js"></script>
 <script src="{{ asset('bower_components') }}/bootstrap-material-design/dist/js/ripples.js"></script>
 <script src="{{ asset('bower_components') }}/snackbarjs/dist/snackbar.min.js"></script>
-
+<script src="{{ asset('bower_components') }}/nprogress/nprogress.js"></script>
+<script src="{{ asset('bower_components') }}/nprogress/nprogress.js"></script>
 <script !src="">
+    $(document).ready(function () {
+        NProgress.start();
+    });
+    window.onload = function () {
+        NProgress.done(false);
+    };
     $(function () {
         $.material.init();
         var jokes = [

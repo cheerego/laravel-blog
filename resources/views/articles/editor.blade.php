@@ -1,12 +1,12 @@
 @extends('layouts.home')
 
 @section('scripttop')
-    <link rel="stylesheet" type="text/css" href="../bower_components/simditor/styles/simditor.css"/>
-    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="../bower_components/simple-module/lib/module.js"></script>
-    <script type="text/javascript" src="../bower_components/simple-hotkeys/lib/hotkeys.js"></script>
-    <script type="text/javascript" src="../bower_components/simple-uploader/lib/uploader.js"></script>
-    <script type="text/javascript" src="../bower_components/simditor/lib/simditor.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components') }}/simditor/styles/simditor.css"/>
+    <script type="text/javascript" src="{{ asset('bower_components') }}/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ asset('bower_components') }}/simple-module/lib/module.js"></script>
+    <script type="text/javascript" src="{{ asset('bower_components') }}/simple-hotkeys/lib/hotkeys.js"></script>
+    <script type="text/javascript" src="{{ asset('bower_components') }}/simple-uploader/lib/uploader.js"></script>
+    <script type="text/javascript" src="{{ asset('bower_components') }}/simditor/lib/simditor.js"></script>
 @endsection
 
 @section('content')

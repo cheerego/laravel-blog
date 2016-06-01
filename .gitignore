@@ -5,6 +5,6 @@ Homestead.yaml
 Homestead.json
 
 .idea
-/bower_components
+public/bower_components
 
 

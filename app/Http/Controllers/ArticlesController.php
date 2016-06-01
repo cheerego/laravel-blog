@@ -6,7 +6,6 @@ use App\Http\Middleware\Authenticate;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use Illuminate\Validation\Validator;
 
 class ArticlesController extends Controller
 {
@@ -37,7 +36,7 @@ class ArticlesController extends Controller
 
     public function create()
     {
-
+        return view('articles.editor');
     }
 
     public function update()
@@ -62,8 +61,7 @@ class ArticlesController extends Controller
 
     public function editor()
     {
-        echo asset('bower_components');
-        exit();
+
         return view('articles.editor');
     }
 

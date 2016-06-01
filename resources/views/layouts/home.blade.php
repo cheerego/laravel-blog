@@ -9,10 +9,11 @@
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
     <link href="//apps.bdimg.com/libs/fontawesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="../bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.css">
-    <link rel="stylesheet" href="../bower_components/bootstrap-material-design/dist/css/ripples.css">
-    <link href="../bower_components/snackbarjs/dist/snackbar.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('bower_components') }}/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet"
+          href="{{ asset('bower_components') }}/bootstrap-material-design/dist/css/bootstrap-material-design.css">
+    <link rel="stylesheet" href="{{ asset('bower_components') }}/bootstrap-material-design/dist/css/ripples.css">
+    <link href="{{ asset('bower_components') }}/snackbarjs/dist/snackbar.min.css" rel="stylesheet">
     @yield('scripttop')
     <style>
         body {
@@ -77,7 +78,7 @@
     <div class="col-md-3">
         <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
             <li class="active"><a href="{{ url('home') }}">功能</a></li>
-            <li><a href="{{ url('editor') }}  ">撰写文章</a></li>
+            <li><a href="{{ url('articles/create') }}  ">撰写文章</a></li>
             <li><a href="javascript:void(0)">文章列表</a></li>
             <li><a href="javascript:void(0)">文章列表</a></li>
         </ul>
@@ -90,14 +91,13 @@
 <button style="display: none" id="btn" type="button" class="btn btn-default"
         data-content="我只想让他弹出来玩一玩,没有其他的意思😂" data-toggle="snackbar" data-timeout="0">Show snackbar
 </button>
-<script src="../bower_components/jquery/dist/jquery.js"></script>
-<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="../bower_components/bootstrap-material-design/dist/js/material.js"></script>
-<script src="../bower_components/bootstrap-material-design/dist/js/ripples.js"></script>
-<script src="../bower_components/snackbarjs/dist/snackbar.min.js"></script>
+<script src="{{ asset('bower_components') }}/jquery/dist/jquery.js"></script>
+<script src="{{ asset('bower_components') }}/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="{{ asset('bower_components') }}/bootstrap-material-design/dist/js/material.js"></script>
+<script src="{{ asset('bower_components') }}/bootstrap-material-design/dist/js/ripples.js"></script>
+<script src="{{ asset('bower_components') }}/snackbarjs/dist/snackbar.min.js"></script>
 
 <script !src="">
-
     $(function () {
         $.material.init();
         var jokes = [

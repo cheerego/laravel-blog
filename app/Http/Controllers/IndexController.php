@@ -20,17 +20,17 @@ class IndexController extends Controller
         return view('index.index');
     }
 
-    public function create()
+    public function blog()
+    {
+        return view('index.blog');
+    }
+
+    public function toys()
     {
 
     }
 
-    public function show()
-    {
-
-    }
-
-    public function store()
+    public function message()
     {
 
     }
@@ -40,7 +40,7 @@ class IndexController extends Controller
 
     }
 
-    public function update()
+    public function aboutme()
     {
 
     }

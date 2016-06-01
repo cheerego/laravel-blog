@@ -26,12 +26,14 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        dd([
-            '1' => 'a',
-            '2' => 'a',
-            '3' => 'a',
-            '4' => 'a',
-        ]);
-//        return view('home');
+        return view('home.index');
+    }
+    
+    public function newarticle(){
+        return view('home.newarticle');
+    }
+
+    public function editor(){
+
     }
 }

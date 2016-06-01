@@ -17,7 +17,6 @@
 Route::resource('/', 'IndexController');
 
 
-
 Route::auth();
 
 Route::get('/home', 'HomeController@index');

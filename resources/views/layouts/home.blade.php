@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.css">
     <link rel="stylesheet" href="../bower_components/bootstrap-material-design/dist/css/ripples.css">
     <link href="../bower_components/snackbarjs/dist/snackbar.min.css" rel="stylesheet">
+    @yield('script')
     <style>
         body {
             width: 1210px;
@@ -62,8 +63,11 @@
         </div>
     </div>
 </header>
+<div class="row">
+    <div class="col-md-3">1</div>
+    <div class="col-md-9">@yield('content')</div>
+</div>
 
-@yield('content')
 
 <button style="display: none" id="btn" type="button" class="btn btn-default"
         data-content="我只想让他弹出来玩一玩,没有其他的意思😂" data-toggle="snackbar" data-timeout="0">Show snackbar

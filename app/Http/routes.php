@@ -19,5 +19,11 @@ Route::resource('/', 'IndexController');
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
-Route::get('/admin', 'Admin\IndexController@index');
+
+Route::resource('home', 'HomeController');
+
+
+//articles
+Route::get('editor', "ArticlesController@editor");
+Route::post('upload', "ArticlesController@uploadimg");
+Route::resource('articles', 'ArticlesController');

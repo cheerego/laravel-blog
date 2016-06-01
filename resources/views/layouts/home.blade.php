@@ -5,22 +5,24 @@
     <title>Title</title>
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
-    <link href="http://apps.bdimg.com/libs/fontawesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//apps.bdimg.com/libs/fontawesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="../bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.css">
     <link rel="stylesheet" href="../bower_components/bootstrap-material-design/dist/css/ripples.css">
     <link href="../bower_components/snackbarjs/dist/snackbar.min.css" rel="stylesheet">
-    @yield('script')
+    @yield('scripttop')
     <style>
         body {
             width: 1210px;
             margin: 0 auto;
+            background-color: white;
         }
     </style>
 </head>
-<body style="background-image:url(../image/background.png);background-position:center; background-repeat:repeat">
+<body>
 <header>
     <div class="navbar navbar-info ">
         <div class="container-fluid margin">
@@ -42,7 +44,13 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="disabled"><a href="javascript:void(0)"> Society:</a></li>
+                    <li class="disabled">
+                        <a href="javascript:void(0)">
+                            @if(Auth::check())
+                                {{ Auth::user()->name }}
+                            @endif
+                        </a>
+                    </li>
                     <li class="dropdown">
                         <a href="http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html"
                            data-target="#" class="dropdown-toggle" data-toggle="dropdown">More...
@@ -51,6 +59,8 @@
                             <li><a href="javascript:void(0)">Github</a></li>
                             <li><a href="javascript:void(0)">Sina Weibo</a></li>
                             <li><a href="javascript:void(0)">Segmentfault</a></li>
+                            <li><a href="{{ action('Auth\AuthController@login') }}">Login</a></li>
+                            <li><a href="{{ action('Auth\AuthController@logout') }}">Logout</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -64,7 +74,15 @@
     </div>
 </header>
 <div class="row">
-    <div class="col-md-3">1</div>
+    <div class="col-md-3">
+        <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
+            <li class="active"><a href="{{ url('home') }}">功能</a></li>
+            <li><a href="{{ url('editor') }}  ">撰写文章</a></li>
+            <li><a href="javascript:void(0)">文章列表</a></li>
+            <li><a href="javascript:void(0)">文章列表</a></li>
+        </ul>
+
+    </div>
     <div class="col-md-9">@yield('content')</div>
 </div>
 
@@ -77,8 +95,9 @@
 <script src="../bower_components/bootstrap-material-design/dist/js/material.js"></script>
 <script src="../bower_components/bootstrap-material-design/dist/js/ripples.js"></script>
 <script src="../bower_components/snackbarjs/dist/snackbar.min.js"></script>
+
 <script !src="">
-    @yield('scriptcode')
+
     $(function () {
         $.material.init();
         var jokes = [
@@ -95,7 +114,8 @@
         btn.setAttribute('data-content', jokes[seed]);
         btn.click();
     });
-
 </script>
+@yield('scriptbottom')
+@yield('scriptcode')
 </body>
 </html>

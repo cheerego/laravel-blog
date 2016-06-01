@@ -41,15 +41,23 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="disabled"><a href="javascript:void(0)"> Society:</a></li>
+                    <li class="disabled">
+                        <a href="javascript:void(0)">
+                            @if(Auth::check())
+                                {{ Auth::user()->name }}
+                            @endif
+                        </a>
+                    </li>
                     <li class="dropdown">
                         <a href="http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html"
-                           data-target="#" class="dropdown-toggle" data-toggle="dropdown">More...
+                           data-target="#" class="dropdown-toggle" data-toggle="dropdown">More..
                             <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="javascript:void(0)">Github</a></li>
                             <li><a href="javascript:void(0)">Sina Weibo</a></li>
                             <li><a href="javascript:void(0)">Segmentfault</a></li>
+                            <li><a href="{{ action('Auth\AuthController@login') }}">Login</a></li>
+                            <li><a href="{{ action('Auth\AuthController@logout') }}">Logout</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -73,8 +81,9 @@
 <script src="../bower_components/bootstrap-material-design/dist/js/material.js"></script>
 <script src="../bower_components/bootstrap-material-design/dist/js/ripples.js"></script>
 <script src="../bower_components/snackbarjs/dist/snackbar.min.js"></script>
+
 <script !src="">
-    @yield('scriptcode')
+
     $(function () {
         $.material.init();
         var jokes = [
@@ -93,5 +102,6 @@
     });
 
 </script>
+@yield('scriptcode')
 </body>
 </html>

@@ -15,9 +15,6 @@ class CreateCategorysTable extends Migration
         Schema::create('categorys', function (Blueprint $table) {
             $table->tinyInteger('id', true, true);
             $table->string('name', 20);
-            $table->tinyInteger('fathercateid',null,true)->nullable;
-
-            $table->foreign('fathercateid')->references('id')->on('categorys')->onUpdate('cascade');
         });
     }
 

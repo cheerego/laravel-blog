@@ -101,6 +101,4 @@
         </div>
     </div>
 @endsection
-@section('scriptcode')
-alert('asdasd')
-@endsection
+

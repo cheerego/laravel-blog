@@ -22,13 +22,18 @@
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach
         </select>
-        <textarea id="editor" placeholder="Balabala" autofocus required name="html"
-                  value="">{{ old('content') }}</textarea>
+        <textarea id="editor" placeholder="Balabala" autofocus required name="html" value="">{{ old('content') }}</textarea>
         {{ csrf_field() }}
         {{ method_field('POST') }}
         <input type="submit" value="Submit" class="btn btn-block btn-success btn-raised">
-
     </form>
+    @if($errors->any())
+        <ul class="alert alert-danger">
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
 @endsection
 
 

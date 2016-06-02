@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Category;
 use App\Http\Middleware\Authenticate;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -37,8 +38,12 @@ class ArticlesController extends Controller
             'title' => 'required',
             'html' => 'required'
         ]);
+
+
         if ($validator->fails()) {
-            dd($validator->errors());
+            return redirect('articles/create')
+                ->withErrors($validator)
+                ->withInput();
         } else {
             $article = Article::create([
                 'title' => request('title'),
@@ -70,7 +75,8 @@ class ArticlesController extends Controller
 
     public function show( )
     {
-        $articles = Article::select('articles.id as article_id','title','html','author','name','created_at','published_at','deleted_at','updated_at','category_id')->join('categorys', 'articles.category_id', '=', 'categorys.id')->createdat()->paginate(15);
+
+        $articles = Article::withTrashed()->select('articles.id as article_id','title','html','author','name','created_at','published_at','deleted_at','updated_at','category_id')->join('categorys', 'articles.category_id', '=', 'categorys.id')->createdat()->paginate(2);
 //        $articles = Article::join('categorys', 'articles.category_id', '=', 'categorys.id')->createdat()->paginate(15);
         return view('articles.show', ['articles' => $articles]);
     }
@@ -96,6 +102,10 @@ class ArticlesController extends Controller
             ]);
         }
 
+    }
+
+    public function activate(){
+        
     }
 
     /**

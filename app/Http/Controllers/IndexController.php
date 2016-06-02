@@ -22,7 +22,7 @@ class IndexController extends Controller
 
     public function blog()
     {
-        return view('index.blog');
+      echo 1231231;
     }
 
     public function toys()
@@ -42,7 +42,7 @@ class IndexController extends Controller
 
     public function aboutme()
     {
-
+        echo 'adasd';
     }
 
     public function destory()

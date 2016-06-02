@@ -8,7 +8,8 @@
     {{--<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">--}}
     {{--<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">--}}
     <link rel="stylesheet" href="{{ asset('bower_components') }}/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="{{ asset('bower_components') }}/bootstrap-material-design/dist/css/bootstrap-material-design.css">
+    <link rel="stylesheet"
+          href="{{ asset('bower_components') }}/bootstrap-material-design/dist/css/bootstrap-material-design.css">
     <link rel="stylesheet" href="{{ asset('bower_components') }}/bootstrap-material-design/dist/css/ripples.css">
     <link href="{{ asset('bower_components') }}/snackbarjs/dist/snackbar.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('bower_components') }}/nprogress/nprogress.css">
@@ -22,18 +23,21 @@
 <body style="background-image:url(../image/background.png);background-position:center; background-repeat:repeat">
 @include('layouts.nav')
 
-
-@yield('content')
-
+<div id="container">
+    @yield('content')
+</div>
 <button style="display: none" id="btn" type="button" class="btn btn-default"
         data-content="我只想让他弹出来玩一玩,没有其他的意思😂" data-toggle="snackbar" data-timeout="0">Show snackbar
 </button>
 <script src="{{ asset('bower_components') }}/jquery/dist/jquery.js"></script>
+<script src="{{ asset('bower_components') }}/jquery-pjax/jquery.pjax.js"></script>
+{{--<script type="text/javascript" src="{{ asset('bower_components') }}/pjax/src/jquery.pjax.js"></script>--}}
 <script src="{{ asset('bower_components') }}/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="{{ asset('bower_components') }}/bootstrap-material-design/dist/js/material.js"></script>
 <script src="{{ asset('bower_components') }}/bootstrap-material-design/dist/js/ripples.js"></script>
 <script src="{{ asset('bower_components') }}/snackbarjs/dist/snackbar.min.js"></script>
 <script src="{{ asset('bower_components') }}/nprogress/nprogress.js"></script>
+@yield('scriptbottom')
 <script !src="">
     $(document).ready(function () {
         NProgress.start();
@@ -57,8 +61,9 @@
         btn.setAttribute('data-content', jokes[seed]);
         btn.click();
     });
-
+    //
 </script>
+@include('layouts.pjax')
 @yield('scriptcode')
 </body>
 </html>

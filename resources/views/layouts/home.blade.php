@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('bower_components') }}/bootstrap-material-design/dist/css/ripples.css">
     <link href="{{ asset('bower_components') }}/snackbarjs/dist/snackbar.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('bower_components') }}/nprogress/nprogress.css">
+
     @yield('scripttop')
     <style>
         body {
@@ -23,10 +24,11 @@
 </head>
 <body>
 @include('layouts.nav')
+<div id="container">
 <div class="row">
     <div class="col-md-3">
         <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
-            <li class="active"><a href="{{ url('home') }}">功能</a></li>
+            <li class="active"><a href="{{ url('dashboard') }}">功能</a></li>
             <li><a href="{{url('articles/create')}}">撰写文章</a></li>
             <li><a href="{{url('articles/show')}}">文章列表</a></li>
             <li><a href="javascript:void(0)">文章列表</a></li>
@@ -40,13 +42,18 @@
 <button style="display: none" id="btn" type="button" class="btn btn-default"
         data-content="我只想让他弹出来玩一玩,没有其他的意思😂" data-toggle="snackbar" data-timeout="0">Show snackbar
 </button>
+</div>
 <script src="{{ asset('bower_components') }}/jquery/dist/jquery.js"></script>
+<script src="{{ asset('bower_components') }}/jquery-pjax/jquery.pjax.js"></script>
+{{--<script type="text/javascript" src="{{ asset('bower_components') }}/pjax/src/jquery.pjax.js"></script>--}}
 <script src="{{ asset('bower_components') }}/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="{{ asset('bower_components') }}/bootstrap-material-design/dist/js/material.js"></script>
 <script src="{{ asset('bower_components') }}/bootstrap-material-design/dist/js/ripples.js"></script>
 <script src="{{ asset('bower_components') }}/snackbarjs/dist/snackbar.min.js"></script>
 <script src="{{ asset('bower_components') }}/nprogress/nprogress.js"></script>
 <script src="{{ asset('bower_components') }}/nprogress/nprogress.js"></script>
+@yield('scriptbottom')
+@include('layouts.pjax')
 <script !src="">
     $(document).ready(function () {
         NProgress.start();
@@ -71,7 +78,7 @@
         btn.click();
     });
 </script>
-@yield('scriptbottom')
+
 @yield('scriptcode')
 </body>
 </html>

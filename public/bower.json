@@ -20,7 +20,7 @@
     "snackbarjs": "https://github.com/FezVrasta/snackbarjs.git#^1.1.0",
     "simditor": "^2.3.6",
     "nprogress": "^0.2.0",
-    "pjax": "https://github.com/welefen/pjax.git",
-    "simditor-emoji": "https://github.com/mycolorway/simditor-emoji.git#^2.1.1"
+    "simditor-emoji": "https://github.com/mycolorway/simditor-emoji.git#^2.1.1",
+    "jquery-pjax": "^1.9.6"
   }
 }

@@ -1,3 +1,4 @@
+{{ Request::url() }}
 <header style="margin-top: 2px">
     <div class="navbar navbar-info ">
         <div class="container-fluid margin">
@@ -12,22 +13,22 @@
             </div>
             <div class="navbar-collapse collapse navbar-responsive-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="javascript:void(0)">Blog</a></li>
-                    <li><a href="javascript:void(0)">Toys</a></li>
-                    <li><a href="javascript:void(0)">Message<span class="badge">3</span></a></li>
-                    <li><a href="javascript:void(0)">About me</a></li>
+                    <li><a class="pjax" href="{{ url('blog') }}" >Blog</a></li>
+                    <li><a class="pjax" href="javascript:void(0)">Toys</a></li>
+                    <li><a class="pjax" href="javascript:void(0)">Message<span class="badge">3</span></a></li>
+                    <li><a class="pjax" href="{{ url('aboutme') }}">About me</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="disabled">
-                        <a href="javascript:void(0)">
-                            @if(Auth::check())
-                                {{ Auth::user()->name }}
-                            @endif
+                    <li>
+                        @if(Auth::check())
+                        <a href="{{ url('/dashboard') }}">
+                            {{ Auth::user()->name }}
                         </a>
+                        @endif
                     </li>
                     <li class="dropdown">
-                        <a href="http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html"
+                        <a href="javascript:void(0)"
                            data-target="#" class="dropdown-toggle" data-toggle="dropdown">More...
                             <b class="caret"></b></a>
                         <ul class="dropdown-menu">

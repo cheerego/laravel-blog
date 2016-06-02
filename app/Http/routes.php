@@ -11,18 +11,20 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('index.index');
-//});
-Route::resource('/', 'IndexController');
+
+Route::get('/', 'IndexController@index');
+Route::get('blog','IndexController@blog');
+Route::get('aboutme','IndexController@aboutme');
 
 
 Route::auth();
 
 
-Route::resource('home', 'HomeController');
+
+Route::resource('dashboard', 'HomeController');
 
 
 //articles
-Route::post('upload', "ArticlesController@uploadimg");
+Route::get('uploadimg', "ArticlesController@uploadimg");
+Route::get('reactivate', "ArticlesController@reactivate");
 Route::resource('articles', 'ArticlesController');

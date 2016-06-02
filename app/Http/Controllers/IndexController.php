@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Http\Response;
 
 class IndexController extends Controller
 {
     //
-    
+
 
     public function __construct()
     {
@@ -20,9 +21,14 @@ class IndexController extends Controller
         return view('index.index');
     }
 
-    public function blog()
+    public function blog(Request $request)
     {
-      echo 1231231;
+        if ($request->pjax()) {
+            echo 1231231;
+        } else {
+            return view('index.blog');
+        }
+
     }
 
     public function toys()
@@ -40,16 +46,19 @@ class IndexController extends Controller
 
     }
 
-    public function aboutme()
+    public function aboutme(Request $request)
     {
-        echo 'adasd';
+        if ($request->pjax()) {
+            return view('index.paboutme');
+        } else {
+            return view('index.blog');
+        }
     }
 
     public function destory()
     {
 
     }
-
 
 
 }

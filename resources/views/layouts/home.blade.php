@@ -59,7 +59,7 @@
         NProgress.start();
     });
     window.onload = function () {
-        NProgress.done(false);
+        NProgress.done();
     };
     $(function () {
         $.material.init();

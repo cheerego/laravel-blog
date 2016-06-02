@@ -1,4 +1,3 @@
-{{ Request::url() }}
 <header style="margin-top: 2px">
     <div class="navbar navbar-info ">
         <div class="container-fluid margin">

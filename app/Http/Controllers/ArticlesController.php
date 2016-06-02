@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
 use App\Category;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
 
 class ArticlesController extends Controller
 {
@@ -28,17 +31,35 @@ class ArticlesController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
-        \Validator::make($request->all(), [
+//        dd($request->all());
+
+        $validator = validator($request->all(), [
             'title' => 'required',
-            'body' => 'required',
+            'html' => 'required'
         ]);
+        if ($validator->fails()) {
+            dd($validator->errors());
+        } else {
+            $article = Article::create([
+                'title' => request('title'),
+                'html' => request('html'),
+                'category_id' => request('category'),
+                'author' => \Auth::user()->name,
+            ]);
+        }
+        $categorys = Category::all();
+
+        return view('articles.create')->with(['categorys' => $categorys]);
     }
 
+    /**
+     * 显示editor  显示文章类别
+     * @return $this
+     */
     public function create()
     {
         $categorys = Category::all();
-        
+
         return view('articles.create')->with(['categorys' => $categorys]);
     }
 
@@ -47,9 +68,11 @@ class ArticlesController extends Controller
 
     }
 
-    public function show()
+    public function show( )
     {
-
+        $articles = Article::select('articles.id as article_id','title','html','author','name','created_at','published_at','deleted_at','updated_at','category_id')->join('categorys', 'articles.category_id', '=', 'categorys.id')->createdat()->paginate(15);
+//        $articles = Article::join('categorys', 'articles.category_id', '=', 'categorys.id')->createdat()->paginate(15);
+        return view('articles.show', ['articles' => $articles]);
     }
 
     public function destroy()
@@ -57,8 +80,21 @@ class ArticlesController extends Controller
 
     }
 
-    public function edit()
+    public function edit($id)
     {
+        if (!is_numeric($id) || is_null($id)) {
+            abort('404');
+        }
+        $article = Article::find($id);
+        $categorys = Category::all();
+        if (!$article) {
+            abort('404');
+        } else {
+            return view('articles.edit', [
+                'article' => $article,
+                'categorys' => $categorys
+            ]);
+        }
 
     }
 

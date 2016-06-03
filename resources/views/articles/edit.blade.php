@@ -3,10 +3,12 @@
 @section('scripttop')
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components') }}/simditor/styles/simditor.css"/>
     <script type="text/javascript" src="{{ asset('bower_components') }}/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components') }}/simditor-emoji/styles/simditor-emoji.css"/>
     <script type="text/javascript" src="{{ asset('bower_components') }}/simple-module/lib/module.js"></script>
     <script type="text/javascript" src="{{ asset('bower_components') }}/simple-hotkeys/lib/hotkeys.js"></script>
     <script type="text/javascript" src="{{ asset('bower_components') }}/simple-uploader/lib/uploader.js"></script>
     <script type="text/javascript" src="{{ asset('bower_components') }}/simditor/lib/simditor.js"></script>
+    <script src="{{ asset('bower_components') }}/simditor-emoji/lib/simditor-emoji.js"></script>
 @endsection
 
 @section('content')
@@ -58,6 +60,30 @@
                         fileKey: 'upload_file',
                         connectionCount: 3,
                         leaveConfirm: 'Uploading is in progress, are you sure to leave this page?'
+                    },
+                    toolbar: [
+                        'title',
+                        'bold',
+                        'italic',
+                        'underline',
+                        'strikethrough',
+                        'fontScale',
+                        'color',
+                        'ol',
+                        'ul',
+                        'blockquote',
+                        'code',
+                        'table',
+                        'link',
+                        'image',
+                        'hr',
+                        'indent',
+                        'outdent',
+                        'alignment',
+                        'emoji'
+                    ],
+                    emoji: {
+                        imagePath: '{{ asset('bower_components') }}/simditor-emoji/images/emoji/'
                     }
                 });
     </script>

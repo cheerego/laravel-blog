@@ -20,6 +20,6 @@ class Article extends Model
     }
 
     public function category(){
-        $this->hasOne('App/Category');
+        $this->belongsTo('App\Category','category_id');
     }
 }

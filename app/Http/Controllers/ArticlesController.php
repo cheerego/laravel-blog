@@ -68,9 +68,14 @@ class ArticlesController extends Controller
         return view('articles.create')->with(['categorys' => $categorys]);
     }
 
-    public function update()
+    public function update(Request $request,$id)
     {
-
+        $article = Article::find($id);
+        $article->title = $request->input('title');
+        $article->html = $request->input('html');
+        $article->category_id = $request->input('category');
+        $article->save();
+        return redirect("articles/$id/edit");
     }
 
     public function softdelete($id)
@@ -87,7 +92,7 @@ class ArticlesController extends Controller
     public function show()
     {
 
-        $articles = Article::withTrashed()->select('articles.id as article_id', 'title', 'html', 'author', 'name', 'created_at', 'published_at', 'deleted_at', 'updated_at', 'category_id')->join('categorys', 'articles.category_id', '=', 'categorys.id')->createdat()->paginate(2);
+        $articles = Article::withTrashed()->select('articles.id as article_id', 'title', 'html', 'author', 'name', 'created_at', 'published_at', 'deleted_at', 'updated_at', 'category_id')->join('categorys', 'articles.category_id', '=', 'categorys.id')->createdat()->paginate(10);
 //        $articles = Article::join('categorys', 'articles.category_id', '=', 'categorys.id')->createdat()->paginate(15);
         return view('articles.show', ['articles' => $articles]);
     }

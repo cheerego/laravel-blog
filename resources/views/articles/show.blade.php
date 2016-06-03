@@ -19,7 +19,7 @@
             @foreach ($articles as $article)
                 <tr>
                     <td>{{ $article->article_id }}</td>
-                    <td>{{ $article->title }}</td>
+                    <td><a href="{{ url('detail',[$article->article_id]) }}">{{ $article->title }}</a></td>
                     <td>{{ str_limit($article->html,20) }}</td>
                     <td>{{ $article->author }}</td>
                     <td>{{ $article->name }}</td>

@@ -9,4 +9,7 @@ class Category extends Model
     protected $table = 'categorys';
 
     //
+    public function aticles(){
+        $this->hasMany('app\article');
+    }
 }

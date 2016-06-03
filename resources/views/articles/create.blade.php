@@ -2,9 +2,7 @@
 
 @section('scripttop')
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components') }}/simditor/styles/simditor.css"/>
-    <link rel="stylesheet" type="text/css"
-          href="{{ asset('bower_components') }}/simditor-emoji/styles/simditor-emoji.css"/>
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components') }}/simditor-emoji/styles/simditor-emoji.css"/>
     <script type="text/javascript" src="{{ asset('bower_components') }}/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="{{ asset('bower_components') }}/simple-module/lib/module.js"></script>
     <script type="text/javascript" src="{{ asset('bower_components') }}/simple-hotkeys/lib/hotkeys.js"></script>

@@ -39,32 +39,7 @@
         <!--2-->
         <div class="col-md-4">
 
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">近期文章</h3>
-                </div>
-                <div class="panel-body">
-                    Panel content
-                </div>
-            </div>
-
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <h3 class="panel-title">分类目录</h3>
-                </div>
-                <div class="panel-body">
-                    Panel content
-                </div>
-            </div>
-
-            <div class="panel panel-warning">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Panel warning</h3>
-                </div>
-                <div class="panel-body">
-                    Panel content
-                </div>
-            </div>
+            @include('layouts.articlesilder',['articles'=>$articles,'categorys'=>$categorys])
         </div>
         <!--2-->
 

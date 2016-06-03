@@ -46,7 +46,7 @@
                     <div class="panel-body">
                         @foreach($articles as $article)
                             <p>
-                            <div class="pull-left">{{ $article->title }}</div>
+                            <div class="pull-left ">{{ $article->title }}</div>
                             <div class="pull-right">{{ $article->created_at->diffForHumans() }}</div>
                             </p>
                         @endforeach

@@ -15,6 +15,7 @@
 Route::get('/', 'IndexController@index');
 Route::get('blog','IndexController@blog');
 Route::get('aboutme','IndexController@aboutme');
+Route::get('detail/{id}','IndexController@details');
 
 
 Route::auth();

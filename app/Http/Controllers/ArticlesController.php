@@ -73,10 +73,21 @@ class ArticlesController extends Controller
 
     }
 
-    public function show( )
+    public function softdelete($id)
+    {
+        $article = Article::find($id);
+        if (!$article) {
+            abort(404);
+        } else {
+            $article->delete();
+            return redirect('articles/show');
+        }
+    }
+
+    public function show()
     {
 
-        $articles = Article::withTrashed()->select('articles.id as article_id','title','html','author','name','created_at','published_at','deleted_at','updated_at','category_id')->join('categorys', 'articles.category_id', '=', 'categorys.id')->createdat()->paginate(2);
+        $articles = Article::withTrashed()->select('articles.id as article_id', 'title', 'html', 'author', 'name', 'created_at', 'published_at', 'deleted_at', 'updated_at', 'category_id')->join('categorys', 'articles.category_id', '=', 'categorys.id')->createdat()->paginate(2);
 //        $articles = Article::join('categorys', 'articles.category_id', '=', 'categorys.id')->createdat()->paginate(15);
         return view('articles.show', ['articles' => $articles]);
     }
@@ -104,8 +115,17 @@ class ArticlesController extends Controller
 
     }
 
-    public function activate(){
-        
+    public function reactivate($id)
+    {
+        $article = Article::withTrashed()->find($id);
+        if (!$article) {
+            abort(404);
+        } else {
+            $article->deleted_at = null;
+            $article->save();
+            return redirect('articles/show');
+        }
+
     }
 
     /**

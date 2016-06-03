@@ -39,14 +39,22 @@
         <!--2-->
         <div class="col-md-4">
 
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">近期文章</h3>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">近期文章</h3>
+                    </div>
+                    <div class="panel-body">
+                        @foreach($articles as $article)
+                            <p>
+                            <div class="pull-left">{{ $article->title }}</div>
+                            <div class="pull-right">{{ $article->created_at->diffForHumans() }}</div>
+                            </p>
+                        @endforeach
+
+                    </div>
                 </div>
-                <div class="panel-body">
-                    Panel content
-                </div>
-            </div>
+
+
 
             <div class="panel panel-success">
                 <div class="panel-heading">

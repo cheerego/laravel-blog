@@ -26,5 +26,6 @@ Route::resource('dashboard', 'HomeController');
 
 //articles
 Route::get('uploadimg', "ArticlesController@uploadimg");
-Route::get('reactivate', "ArticlesController@reactivate");
+Route::get('articles/reactivate/{id}', "ArticlesController@reactivate");
+Route::get('articles/softdelete/{id}', "ArticlesController@softdelete");
 Route::resource('articles', 'ArticlesController');

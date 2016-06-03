@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -23,12 +24,13 @@ class IndexController extends Controller
 
     public function blog(Request $request)
     {
+        $articles = Article::limit(5)->createdat()->get();
+        $particles = Article::createdat()->simplePaginate(15);
         if ($request->pjax()) {
-            echo 1231231;
+            return view('index.pblog')->with(['articles' => $articles, 'particles' => $particles]);
         } else {
-            return view('index.blog');
+            return view('index.blog')->with(['articles' => $articles, 'particles' => $particles]);
         }
-
     }
 
     public function toys()

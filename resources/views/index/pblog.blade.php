@@ -3,19 +3,25 @@
 
     <div class="col-md-8">
         @foreach($particles as $a)
-            <div class="panel panel-info">
+            <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><a class="pjax" href="{{ url('detail',[$a->id]) }}">{{ $a->title }}</a><span style="float: right">Category:{{ $a->category->name }}</span></h3>
+                    <div>
+                        <a class="pjax btn btn-sm" href="{{ url('detail',[$a->id]) }}">{{ $a->title }}</a>
+                        <span>
+                            <i class="fa fa-clock-o">{{$a->created_at->diffForHumans()}}</i>
+                            <i class="fa fa-tag"></i>
+                            <i class="fa fa-folder">{{$a->category->name}}</i>
+                        </span>
+                    </div>
                 </div>
                 <div class="panel-body">
                     @if(str_contains($a->html,'<img'))
                         <p style="display: none">{!! preg_match('/<\s*img\s+[^>]*?src\s*=\s*(\'|\")(.*?)\\1[^>]*?\/?\s*>/i', $a->html,$array) !!}</p>
                         <p>{!!   $array[0] !!}</p>
-                        <p>{!! preg_replace('/<\s*img\s+[^>]*?src\s*=\s*(\'|\")(.*?)\\1[^>]*?\/?\s*>/i','',$a->html)  !!}</p>
+                        <p>{!!str_limit(strip_tags(preg_replace('/<\s*img\s+[^>]*?src\s*=\s*(\'|\")(.*?)\\1[^>]*?\/?\s*>/i','',$a->html)),120) !!}</p>
                     @else
-                        {!! str_limit($a->html,100)  !!}
+                        {{ str_limit(strip_tags($a->html),120) }}
                     @endif
-
 
                 </div>
             </div>

@@ -35,6 +35,7 @@
             <li><a href="{{ url('articles/create') }}">撰写文章</a></li>
             <li><a href="{{ url('articles/show') }}">文章列表</a></li>
             <li><a href="{{ url('categories/show') }}">分类列表</a></li>
+            <li><a href="{{ url('tags') }}">标签列表</a></li>
         </ul>
 
     </div>

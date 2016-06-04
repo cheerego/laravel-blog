@@ -10,7 +10,7 @@
     @endif
 
     <button class="btn btn-raised btn-lg" data-toggle="modal" data-target="#myModal">
-        Add Category
+        Add Tag
     </button>
     <!-- 模态框（Modal） -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -22,7 +22,7 @@
                         &times;
                     </button>
                     <h4 class="modal-title" id="myModalLabel">
-                        Add Category
+                        Add Tag
                     </h4>
                 </div>
                 <div class="modal-body">
@@ -60,28 +60,28 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($pcategories as $category)
+        @foreach($ptags as $tag)
             <tr class="active">
-                <td>{{ $category->id }}</td>
-                <td>{{ $category->name }}</td>
-                <td>{{ count($category->articles) }}</td>
+                <td>{{ $tag->id }}</td>
+                <td>{{ $tag->name }}</td>
+                <td>{{ count($tag->articles) }}</td>
                 <td>
-                    @if(empty($category->deleted_at))
-                        <a href="{{ url("categories/softdelete/".$category->id) }}" class="btn btn-raised btn-warning btn-xs">
+                    @if(empty($tag->deleted_at))
+                        <a href="{{ url("categories/softdelete/".$tag->id) }}" class="btn btn-raised btn-warning btn-xs">
                             Delete
                         </a>
                     @else
-                        <a href="{{ url("categories/reactivate/".$category->id) }}" class="btn btn-raised btn-info btn-xs">
-                            {{ $category->deleted_at->diffForHumans() }}
+                        <a href="{{ url("categories/reactivate/".$tag->id) }}" class="btn btn-raised btn-info btn-xs">
+                            {{ $tag->deleted_at->diffForHumans() }}
                         </a>
                     @endif
                 </td>
                 <td>
-                    <button class="btn" data-toggle="modal" data-target="#{{$category->name}}">
+                    <button class="btn" data-toggle="modal" data-target="#{{$tag->name}}">
                         Rename
                     </button>
 
-                    <div class="modal fade" id="{{$category->name}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="{{$tag->name}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -94,12 +94,12 @@
                                     </h4>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="{{ url('categories',[$category->id]) }}" method="post">
+                                    <form action="{{ url('categories',[$tag->id]) }}" method="post">
                                         {{ csrf_field() }}
                                         {{ method_field('PUT') }}
                                         <div class="form-group label-floating">
                                             <label class="control-label" for="focusedInput2">Rename</label>
-                                            <input class="form-control" name="name" id="focusedInput2" type="text" value="{{ $category->name }}">
+                                            <input class="form-control" name="name" id="focusedInput2" type="text" value="{{ $tag->name }}">
                                             <p class="help-block">为了统一格式,建议首字母大写😂</p>
                                         </div>
                                         <button type="button" class="btn btn-default"
@@ -121,5 +121,5 @@
         @endforeach
         </tbody>
     </table>
-    {!! $pcategories->render() !!}
+    {!! $ptag->render() !!}
 @endsection

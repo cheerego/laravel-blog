@@ -6,19 +6,23 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div>
-                    <span>{{ $detail->title }}</span>
-                    @if(Auth::check())
-                        <span style="float: right">
-                            Category:{{ $detail->category->name }}
+                    <ul class="nav nav-pills">
+                        <li class="disabled"><a class="btn btn-sm">{{ $detail->title }}</a></li>
+                        <li>
+                            @if(Auth::check())
+                                <span style="float: right">
                             @if(is_null($detail->deleted_at))
-                                <a href="{{ url('articles/softdelete/'.$detail->id) }}" class=" btn-link " >Delete</a>
-                            @else
-                                <a href="{{ url('articles/reactivate/'.$detail->id) }}" class=" btn-link " >{{ $detail->deleted_at->diffForHumans() }}</a>
-                            @endif
+                                        <a class="btn btn-sm" href="{{ url('articles/softdelete/'.$detail->id) }}" >Delete</a>
+                                    @else
+                                        <a class="btn btn-sm" href="{{ url('articles/reactivate/'.$detail->id) }}" >{{ $detail->deleted_at->diffForHumans() }}</a>
+                                    @endif
 
-                            <a href="{{ url('articles/'.$detail->id.'/edit') }}" class="btn-link">Edit</a>
+                                    <a href="{{ url('articles/'.$detail->id.'/edit') }}" class="btn btn-sm">Edit</a>
                         </span>
-                    @endif
+                            @endif
+                        </li>
+                    </ul>
+
                 </div>
 
 
@@ -28,9 +32,13 @@
             </div>
             <div class="panel-footer">
                 <p>
-                    <span style="float: right">Author:{{ $detail->author }}</span>
+                    <span style="float: right"><i class="fa fa-user" aria-hidden="true"> {{ $detail->author }}</i></span>
                     &nbsp;&nbsp;
-                    <span style="float: left">Created At:{{ $detail->created_at->diffForHumans() }}</span>
+                    <span style="float: left">
+                            <i class="fa fa-clock-o"> {{$detail->created_at->diffForHumans()}}</i>
+                            <i class="fa fa-tag"></i>
+                            <i class="fa fa-folder"> {{$detail->category->name}}</i>
+                        </span>
 
                 </p>
             </div>

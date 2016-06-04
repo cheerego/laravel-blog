@@ -70,7 +70,7 @@ class ArticlesController extends Controller
 
     public function update(Request $request,$id)
     {
-        $article = Article::find($id);
+        $article = Article::withTrashed()->find($id);
         $article->title = $request->input('title');
         $article->html = $request->input('html');
         $article->category_id = $request->input('category');
@@ -107,9 +107,9 @@ class ArticlesController extends Controller
         if (!is_numeric($id) || is_null($id)) {
             abort('404');
         }
-        $article = Article::find($id);
+        $article = Article::withTrashed()->find($id);
         $categorys = Category::all();
-        if (!$article) {
+        if (count($article)===0) {
             abort('404');
         } else {
             return view('articles.edit', [

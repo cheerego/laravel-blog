@@ -18,23 +18,23 @@
             <tbody>
             @foreach ($articles as $article)
                 <tr>
-                    <td>{{ $article->article_id }}</td>
-                    <td><a href="{{ url('detail',[$article->article_id]) }}">{{ $article->title }}</a></td>
+                    <td>{{ $article->id }}</td>
+                    <td><a href="{{ url('detail',[$article->id]) }}">{{ $article->title }}</a></td>
                     <td>{{ str_limit($article->html,20) }}</td>
                     <td>{{ $article->author }}</td>
-                    <td>{{ $article->name }}</td>
+                    <td>{{ $article->category->name }}</td>
                     <td>{{ $article->created_at }}</td>
                     <td>{{ $article->updated_at }}</td>
                     <td style="text-align: center">
                         @if(isset($article->deleted_at))
-                            <a href="{{ url("articles/reactivate/".$article->article_id) }}"
+                            <a href="{{ url("articles/reactivate/".$article->id) }}"
                                class="btn btn-raised btn-info btn-xs">{{ $article->deleted_at ? $article->deleted_at->diffForHumans() : '删除' }}</a>
                         @else
-                            <a href="{{ url("articles/softdelete/".$article->article_id) }}"
+                            <a href="{{ url("articles/softdelete/".$article->id) }}"
                                class="btn btn-raised btn-info btn-xs">{{ $article->deleted_at ? $article->deleted_at->diffForHumans() : '删除' }}</a>
                         @endif
                     </td>
-                    <td><a href="{{ url("articles/".$article->article_id.'/edit') }}"
+                    <td><a href="{{ url("articles/".$article->id.'/edit') }}"
                            class="btn btn-raised btn-danger btn-xs">Edit</a></td>
                 </tr>
             @endforeach

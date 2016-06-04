@@ -15,16 +15,15 @@ class CreateArticlesTable extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->text('content')->nullab;
+            $table->text('content')->nullable();
             $table->text('html');
             $table->tinyInteger('category_id',null,true);
             $table->string('author');
-            $table->timestamp('published_at')->nullable;
-            $table->timestamp('deleted_at')->nullable;
+            $table->timestamp('published_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
 
-
-            $table->foreign('category_id')->references('id')->on('categorys')->onUpdate('cascade');
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

@@ -18,11 +18,17 @@ class IndexController extends Controller
     {
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $articles = Article::limit(5)->createdat()->get();
         $categorys = Category::all();
-        return view('index.index')->with(['articles' => $articles, 'categorys' => $categorys]);
+        if ($request->pjax()) {
+            return view('index.pindex')->with(['articles' => $articles, 'categorys' => $categorys]);
+        } else {
+            return view('index.index')->with(['articles' => $articles, 'categorys' => $categorys]);
+        }
+
+
     }
 
     public function blog(Request $request)
@@ -46,9 +52,9 @@ class IndexController extends Controller
         $categorys = Category::all();
         $detail = Article::withTrashed()->find($id);
         if ($request->pjax()) {
-            return view('index.pdetail')->with(['articles' => $articles, 'categorys' => $categorys,'detail'=>$detail]);
+            return view('index.pdetail')->with(['articles' => $articles, 'categorys' => $categorys, 'detail' => $detail]);
         } else {
-            return view('index.detail')->with(['articles' => $articles, 'categorys' => $categorys,'detail'=>$detail]);
+            return view('index.detail')->with(['articles' => $articles, 'categorys' => $categorys, 'detail' => $detail]);
         }
     }
 

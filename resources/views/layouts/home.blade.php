@@ -32,9 +32,9 @@
     <div class="col-md-3">
         <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
             <li class="active"><a href="{{ url('dashboard') }}">功能</a></li>
-            <li><a href="{{url('articles/create')}}">撰写文章</a></li>
-            <li><a href="{{url('articles/show')}}">文章列表</a></li>
-            <li><a href="javascript:void(0)">文章列表</a></li>
+            <li><a href="{{ url('articles/create') }}">撰写文章</a></li>
+            <li><a href="{{ url('articles/show') }}">文章列表</a></li>
+            <li><a href="{{ url('categories/show') }}">分类列表</a></li>
         </ul>
 
     </div>

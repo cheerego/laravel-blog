@@ -2,13 +2,9 @@
 
 @section('scripttop')
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components') }}/simditor/styles/simditor.css"/>
-    <script type="text/javascript" src="{{ asset('bower_components') }}/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href=" {{ asset('bower_components') }}/select2/dist/css/select2.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components') }}/simditor-emoji/styles/simditor-emoji.css"/>
-    <script type="text/javascript" src="{{ asset('bower_components') }}/simple-module/lib/module.js"></script>
-    <script type="text/javascript" src="{{ asset('bower_components') }}/simple-hotkeys/lib/hotkeys.js"></script>
-    <script type="text/javascript" src="{{ asset('bower_components') }}/simple-uploader/lib/uploader.js"></script>
-    <script type="text/javascript" src="{{ asset('bower_components') }}/simditor/lib/simditor.js"></script>
-    <script src="{{ asset('bower_components') }}/simditor-emoji/lib/simditor-emoji.js"></script>
+
 @endsection
 
 @section('content')
@@ -27,7 +23,12 @@
         </select>
         <textarea id="editor" placeholder="Balabala" autofocus required name="html"
                   value="">{{ $article->html }}</textarea>
-
+        <select id="select" class="form-control" multiple>
+            <option value="1">1</option>
+            <option value="2">1</option>
+            <option value="3">1</option>
+            <option value="4">1</option>
+        </select>
         <input type="submit" value="Submit" class="btn btn-block btn-success btn-raised">
         {{ csrf_field() }}
         {{ method_field('PUT') }}
@@ -37,6 +38,13 @@
 
 
 @section('scriptbottom')
+    <script type="text/javascript" src="{{ asset('bower_components') }}/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ asset('bower_components') }}/select2/dist/js/select2.full.min.js"></script>
+    <script type="text/javascript" src="{{ asset('bower_components') }}/simple-module/lib/module.js"></script>
+    <script type="text/javascript" src="{{ asset('bower_components') }}/simple-hotkeys/lib/hotkeys.js"></script>
+    <script type="text/javascript" src="{{ asset('bower_components') }}/simple-uploader/lib/uploader.js"></script>
+    <script type="text/javascript" src="{{ asset('bower_components') }}/simditor/lib/simditor.js"></script>
+    <script type="text/javascript" src="{{ asset('bower_components') }}/simditor-emoji/lib/simditor-emoji.js"></script>
 @endsection
 
 
@@ -86,6 +94,7 @@
                         imagePath: '{{ asset('bower_components') }}/simditor-emoji/images/emoji/'
                     }
                 });
+        $('#select').select2();
     </script>
 
 

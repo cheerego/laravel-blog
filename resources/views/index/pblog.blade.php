@@ -5,8 +5,7 @@
         @foreach($particles as $a)
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><a class="pjax"
-                                               href="{{ url('detail',[$a->id]) }}">{{ $a->title }}</a></h3>
+                    <h3 class="panel-title"><a class="pjax" href="{{ url('detail',[$a->id]) }}">{{ $a->title }}</a><span style="float: right">Category:{{ $a->category->name }}</span></h3>
                 </div>
                 <div class="panel-body">
                     @if(str_contains($a->html,'<img'))

@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -10,7 +9,6 @@ class Article extends Model
 {
     //
     use SoftDeletes;
-    
     protected $fillable = ['title', 'html', 'author', 'category_id'];
     protected $dates = ['deleted_at','published_at'];
 
@@ -20,6 +18,6 @@ class Article extends Model
     }
 
     public function category(){
-        $this->belongsTo('App\Category','category_id');
+       return $this->belongsTo('App\Category','category_id');
     }
 }

@@ -9,6 +9,7 @@
                     <span>{{ $detail->title }}</span>
                     @if(Auth::check())
                         <span style="float: right">
+                            Category:{{ $detail->category->name }}
                             @if(is_null($detail->deleted_at))
                                 <a href="{{ url('articles/softdelete/'.$detail->id) }}" class=" btn-link " >Delete</a>
                             @else
@@ -30,7 +31,7 @@
                     <span style="float: right">Author:{{ $detail->author }}</span>
                     &nbsp;&nbsp;
                     <span style="float: left">Created At:{{ $detail->created_at->diffForHumans() }}</span>
-                    {{ $detail->category()->name }}
+
                 </p>
             </div>
         </div>

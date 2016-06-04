@@ -3,13 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
-    protected $table = 'categorys';
-
-    //
-    public function aticles(){
-        $this->hasMany('app\article');
+    use SoftDeletes;
+    protected $fillable = ['name'];
+    protected $dates = ['deleted_at'];
+    public function articles(){
+       return $this->hasMany('App\Article','id');
     }
 }

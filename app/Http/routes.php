@@ -24,9 +24,14 @@ Route::auth();
 
 Route::resource('dashboard', 'HomeController');
 
+//category
+Route::get('categories/softdelete/{id}', "CategoriesController@softdelete");
+Route::get('categories/reactivate/{id}', "CategoriesController@activate");
+Route::resource('categories', 'CategoriesController');
 
 //articles
 Route::get('uploadimg', "ArticlesController@uploadimg");
 Route::get('articles/reactivate/{id}', "ArticlesController@reactivate");
 Route::get('articles/softdelete/{id}', "ArticlesController@softdelete");
 Route::resource('articles', 'ArticlesController');
+

@@ -25,7 +25,7 @@
         }
     </style>
 </head>
-<body style="background-image:url({{ asset('image').'/background.png' }});background-position:center; background-repeat:repeat">
+<body style="background-image:url({{ asset('image').'/bg.jpg' }});background-position:center; background-repeat:repeat">
 @include('layouts.nav')
 <div id="container">
 <div class="row">
@@ -56,6 +56,7 @@
 <script src="{{ asset('bower_components') }}/snackbarjs/dist/snackbar.min.js"></script>
 <script src="{{ asset('bower_components') }}/nprogress/nprogress.js"></script>
 <script src="{{ asset('bower_components') }}/nprogress/nprogress.js"></script>
+
 @yield('scriptbottom')
 @include('layouts.pjax')
 <script !src="">

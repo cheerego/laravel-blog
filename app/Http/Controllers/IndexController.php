@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Category;
+use App\Tag;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use Illuminate\Http\Response;
 
 class IndexController extends Controller
 {
@@ -22,10 +22,11 @@ class IndexController extends Controller
     {
         $articles = Article::limit(5)->createdat()->get();
         $categorys = Category::all();
+        $tags = Tag::all();
         if ($request->pjax()) {
-            return view('index.pindex')->with(['articles' => $articles, 'categorys' => $categorys]);
+            return view('index.pindex')->with(['articles' => $articles, 'categorys' => $categorys,'tags'=>$tags]);
         } else {
-            return view('index.index')->with(['articles' => $articles, 'categorys' => $categorys]);
+            return view('index.index')->with(['articles' => $articles, 'categorys' => $categorys,'tags'=>$tags]);
         }
 
 
@@ -36,13 +37,16 @@ class IndexController extends Controller
         $articles = Article::limit(5)->createdat()->get();
         $particles = Article::createdat()->simplePaginate(10);
         $categorys = Category::all();
+        $tags = Tag::all();
         if ($request->pjax()) {
             return view('index.pblog')->with([
                 'articles' => $articles,
                 'particles' => $particles,
-                'categorys' => $categorys]);
+                'categorys' => $categorys,
+                'tags'=>$tags
+            ]);
         } else {
-            return view('index.blog')->with(['articles' => $articles, 'particles' => $particles, 'categorys' => $categorys]);
+            return view('index.blog')->with(['articles' => $articles, 'particles' => $particles, 'categorys' => $categorys,'tags'=>$tags]);
         }
     }
 
@@ -51,10 +55,11 @@ class IndexController extends Controller
         $articles = Article::limit(5)->createdat()->get();
         $categorys = Category::all();
         $detail = Article::withTrashed()->find($id);
+        $tags = Tag::all();
         if ($request->pjax()) {
-            return view('index.pdetail')->with(['articles' => $articles, 'categorys' => $categorys, 'detail' => $detail]);
+            return view('index.pdetail')->with(['articles' => $articles, 'categorys' => $categorys, 'detail' => $detail,'tags'=>$tags]);
         } else {
-            return view('index.detail')->with(['articles' => $articles, 'categorys' => $categorys, 'detail' => $detail]);
+            return view('index.detail')->with(['articles' => $articles, 'categorys' => $categorys, 'detail' => $detail,'tags'=>$tags]);
         }
     }
 
@@ -65,7 +70,7 @@ class IndexController extends Controller
 
     public function message()
     {
-
+        return view('index.message');
     }
 
     public function edit()

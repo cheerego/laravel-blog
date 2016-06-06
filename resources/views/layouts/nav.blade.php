@@ -14,7 +14,7 @@
                 <ul class="nav navbar-nav">
                     <li><a class="pjax" href="{{ url('blog') }}" >Blog</a></li>
                     <li><a class="pjax" href="javascript:void(0)">Toys</a></li>
-                    <li><a class="pjax" href="javascript:void(0)">Message<span class="badge">3</span></a></li>
+                    <li><a class="pjax" href="{{url('message')}}">Message<span class="badge">3</span></a></li>
                     <li><a class="pjax" href="{{ url('aboutme') }}">About me</a></li>
                 </ul>
 

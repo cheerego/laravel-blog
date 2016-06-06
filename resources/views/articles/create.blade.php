@@ -1,5 +1,4 @@
 @extends('layouts.home')
-
 @section('scripttop')
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components') }}/simditor/styles/simditor.css"/>
     <link rel="stylesheet" href=" {{ asset('bower_components') }}/select2/dist/css/select2.min.css">
@@ -18,17 +17,15 @@
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach
         </select>
-        <textarea id="editor" placeholder="Balabala" autofocus required name="html"
-                  value="">{{ old('content') }}</textarea>
+        <textarea id="editor" placeholder="Balabala" autofocus required name="html" value="">{{ old('content') }}</textarea>
+        <label for="" class="label label-success">Tags:</label>
+        <select id="select" class=" form-control" name="tags[]" multiple>
+            @foreach($tags as $tag)
+                <option value="{{$tag->id}}"><span class="label label-inverse">{{$tag->name}}</span></option>
+            @endforeach
+        </select>
         {{ csrf_field() }}
         {{ method_field('POST') }}
-        <label for="" class="label label-success">Tags:</label>
-        <select id="select" class=" form-control" multiple>
-            <option value="1">1</option>
-            <option value="2">1</option>
-            <option value="3">1</option>
-            <option value="4">1</option>
-        </select>
         <input type="submit" value="Submit" class="btn btn-block btn-success btn-raised">
     </form>
     @if($errors->any())
@@ -64,11 +61,12 @@
                     },
                     upload: {
                         url: '{{ action('ArticlesController@uploadimg') }}',
-                        defaultImage: '{{ base_path().'/images/image.png' }}',
+                        defaultImage: '{{ public_path()."/image/image.png"}}',
                         params: {
-                            _token: '{{  csrf_token() }}'
+                            _token: '{{  csrf_token() }}',
+                            _method:'POST'
                         },
-                        fileKey: 'upload_file',
+                        fileKey: 'photo',
                         connectionCount: 3,
                         leaveConfirm: 'Uploading is in progress, are you sure to leave this page?'
                     },
@@ -98,7 +96,8 @@
                     }
                 });
         $('#select').select2({
-                    placeholder: "Select ",
+                    tags: true,
+                    placeholder: "Tags",
                 }
         );
     </script>

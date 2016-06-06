@@ -22,7 +22,7 @@
         }
     </style>
 </head>
-<body style="background-image:url(../image/background.png);background-position:center; background-repeat:repeat">
+<body style="background-image:url({{ asset('image').'/bg.jpg' }});background-position:center; background-repeat:repeat">
 @include('layouts.nav')
 
 <div id="container">

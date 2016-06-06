@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\ArticleTag;
 use App\Category;
 use App\Http\Middleware\Authenticate;
+use App\Tag;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 
 class ArticlesController extends Controller
@@ -32,7 +33,6 @@ class ArticlesController extends Controller
 
     public function store(Request $request)
     {
-//        dd($request->all());
 
         $validator = validator($request->all(), [
             'title' => 'required',
@@ -51,10 +51,16 @@ class ArticlesController extends Controller
                 'category_id' => request('category'),
                 'author' => \Auth::user()->name,
             ]);
+            $tags = request('tags');
+            if (!empty($tags)) {
+                foreach ($tags as $tag) {
+                    \DB::insert('insert into `article_tag` (`article_id`, `tag_id`) values (?, ?)', [$article->id, $tag]);
+                }
+            }
         }
         $categorys = Category::all();
 
-        return view('articles.create')->with(['categorys' => $categorys]);
+        return redirect()->action('ArticlesController@create');
     }
 
     /**
@@ -64,17 +70,35 @@ class ArticlesController extends Controller
     public function create()
     {
         $categorys = Category::all();
-
-        return view('articles.create')->with(['categorys' => $categorys]);
+        $tags = Tag::all();
+        return view('articles.create')->with(['categorys' => $categorys, 'tags' => $tags]);
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        $article = Article::withTrashed()->find($id);
-        $article->title = $request->input('title');
-        $article->html = $request->input('html');
-        $article->category_id = $request->input('category');
-        $article->save();
+        $validator = validator($request->all(), [
+            'title' => 'required',
+            'html' => 'required'
+        ]);
+        if ($validator->fails()) {
+            return redirect("articles/$id/edit")
+                ->withErrors($validator)
+                ->withInput();
+        } else {
+            $article = Article::withTrashed()->find($id);
+            $article->title = $request->input('title');
+            $article->html = $request->input('html');
+            $article->category_id = $request->input('category');
+            $article->save();
+            $articletags = \DB::table('article_tag')->where('article_id', '=', $id)->delete();
+            $tags = request('tags');
+            if (!empty($tags)) {
+                foreach ($tags as $tag) {
+                    \DB::insert('insert into `article_tag` (`article_id`, `tag_id`) values (?, ?)', [$article->id, $tag]);
+                }
+            }
+
+        }
         return redirect("articles/$id/edit");
     }
 
@@ -109,12 +133,14 @@ class ArticlesController extends Controller
         }
         $article = Article::withTrashed()->find($id);
         $categorys = Category::all();
-        if (count($article)===0) {
+        $tags = Tag::all();
+        if (count($article) === 0) {
             abort('404');
         } else {
             return view('articles.edit', [
                 'article' => $article,
-                'categorys' => $categorys
+                'categorys' => $categorys,
+                'tags' => $tags,
             ]);
         }
 
@@ -138,7 +164,28 @@ class ArticlesController extends Controller
      */
     public function uploadimg(Request $request)
     {
-        dd($request->allFiles());
+        $file = $request->file('photo');
+        if ($request->hasFile('photo')) {
+            //
+            if ($request->file('photo')->isValid()) {
+                //
+//                echo storage_path('image'),$file->getFilename().".jpg";
+//                $new = $file->move(storage_path('image'),Carbon::now().".jpg");
+//                var_dump( $new->getRealPath());
+                /**
+                 * {
+                 *  "success": true/false,
+                 *  "msg": "error message", # optional
+                 *  "file_path": "[real file path]"
+                 *   }
+                 */
+                return response()->json([
+                    'success' => true,
+                    'msg' => 'success',
+                    "file_path" => "../../storage/image/" . $file->getFilename() . ".jpg"
+                ]);
+            }
+        }
     }
 
 

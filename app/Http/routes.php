@@ -14,6 +14,7 @@
 
 Route::get('/', 'IndexController@index');
 Route::get('blog','IndexController@blog');
+Route::get('message','IndexController@message');
 Route::get('aboutme','IndexController@aboutme');
 Route::get('detail/{id}','IndexController@details');
 
@@ -30,7 +31,7 @@ Route::get('categories/reactivate/{id}', "CategoriesController@activate");
 Route::resource('categories', 'CategoriesController');
 
 //articles
-Route::get('uploadimg', "ArticlesController@uploadimg");
+Route::post('uploadimg', "ArticlesController@uploadimg");
 Route::get('articles/reactivate/{id}', "ArticlesController@reactivate");
 Route::get('articles/softdelete/{id}', "ArticlesController@softdelete");
 Route::resource('articles', 'ArticlesController');

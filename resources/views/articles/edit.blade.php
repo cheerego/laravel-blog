@@ -3,7 +3,8 @@
 @section('scripttop')
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components') }}/simditor/styles/simditor.css"/>
     <link rel="stylesheet" href=" {{ asset('bower_components') }}/select2/dist/css/select2.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components') }}/simditor-emoji/styles/simditor-emoji.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('bower_components') }}/simditor-emoji/styles/simditor-emoji.css"/>
 
 @endsection
 
@@ -21,19 +22,24 @@
                 </option>
             @endforeach
         </select>
-        <textarea id="editor" placeholder="Balabala" autofocus required name="html"
-                  value="">{{ $article->html }}</textarea>
-        <select id="select" class="form-control" multiple>
-            <option value="1">1</option>
-            <option value="2">1</option>
-            <option value="3">1</option>
-            <option value="4">1</option>
+        <textarea id="editor" placeholder="Balabala" autofocus required name="html" value="">{{ $article->html }}</textarea>
+        <label for="" class="label label-success">Tags:</label>
+        <select id="select" class="form-control" name="tags[]" multiple >
+            @foreach($tags as $tag)
+                    <option value="{{$tag->id}}"><span class="label label-inverse">{{$tag->name}}</span></option>
+            @endforeach
         </select>
         <input type="submit" value="Submit" class="btn btn-block btn-success btn-raised">
         {{ csrf_field() }}
         {{ method_field('PUT') }}
     </form>
-
+    @if($errors->any())
+        <ul class="alert alert-danger">
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
 @endsection
 
 
@@ -94,7 +100,11 @@
                         imagePath: '{{ asset('bower_components') }}/simditor-emoji/images/emoji/'
                     }
                 });
-        $('#select').select2();
+        $('#select').select2({
+                    tags: true,
+                    placeholder: "Tags",
+                }
+        );
     </script>
 
 

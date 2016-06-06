@@ -16,7 +16,7 @@ class CreateArticlesTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('content')->nullable();
-            $table->text('html');
+            $table->longText('html');
             $table->tinyInteger('category_id',null,true);
             $table->string('author');
             $table->timestamp('published_at')->nullable();

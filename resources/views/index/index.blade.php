@@ -39,7 +39,7 @@
         <!--2-->
         <div class="col-md-4">
 
-            @include('layouts.articlesilder',['articles'=>$articles,'categorys'=>$categorys])
+            @include('layouts.articlesilder',['articles'=>$articles,'categorys'=>$categorys,'tags'=>$tags])
         </div>
         <!--2-->
 

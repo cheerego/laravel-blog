@@ -8,7 +8,7 @@
                 <div>
                     <ul class="nav nav-pills">
                         <li class="disabled"><a class="btn btn-sm">{{ $detail->title }}</a></li>
-                        <li>
+                        <li class="navbar-right">
                             @if(Auth::check())
                                 <span style="float: right">
                             @if(is_null($detail->deleted_at))
@@ -36,7 +36,9 @@
                     &nbsp;&nbsp;
                     <span style="float: left">
                             <i class="fa fa-clock-o"> {{$detail->created_at->diffForHumans()}}</i>
-                            <i class="fa fa-tag"></i>
+                        @foreach($detail->tags as $tag )
+                            <i class="fa fa-tag">{{$tag->name}}</i>
+                        @endforeach
                             <i class="fa fa-folder"> {{$detail->category->name}}</i>
                         </span>
 

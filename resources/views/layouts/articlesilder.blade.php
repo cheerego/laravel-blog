@@ -7,7 +7,8 @@
             还没有文章!
         @else
             @foreach($articles as $article)
-                <a class="pjax" href="{{url('detail',[$article->id])}}"><span style="float: left;">{{ str_limit($article->title,35) }}</span></a>
+                <a class="pjax" href="{{url('detail',[$article->id])}}"><span
+                            style="float: left;">{{ str_limit($article->title,35) }}</span></a>
                 <span style="float: right;">{{ $article->created_at->diffForHumans() }}</span><br>
             @endforeach
         @endif
@@ -22,7 +23,8 @@
             还没有添加类别!
         @else
             @foreach($categorys as $category)
-                <a href=""><span style="float: left;">{{ $category->name }} ({{ count($category->articles) }})</span></a>
+                <a href=""><span style="float: left;">{{ $category->name }} ({{ count($category->articles) }}
+                        )</span></a>
                 <br>
             @endforeach
         @endif
@@ -31,9 +33,12 @@
 
 <div class="panel panel-warning">
     <div class="panel-heading">
-        <h3 class="panel-title">Panel warning</h3>
+        <h3 class="panel-title">标签</h3>
     </div>
     <div class="panel-body">
-        Panel content
+        @foreach($tags as $tag)
+            <span class="label label-default">{{$tag->name}}</span>
+        @endforeach
+
     </div>
 </div>

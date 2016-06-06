@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\Authenticate;
+use App\Tag;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -18,7 +19,8 @@ class TagController extends Controller
     //
     public function index()
     {
-
+        $ptags = Tag::withTrashed()->paginate(10);
+        return view('tags/index')->with(['ptags' => $ptags]);
     }
 
     public function create()
@@ -29,18 +31,18 @@ class TagController extends Controller
     public function store(Request $request)
     {
         $validator = validator($request->all(), [
-            'name' => 'required|unique:categories',
+            'name' => 'required|unique:tags',
         ]);
         if ($validator->fails()) {
-            return redirect('categories/show')
+            return redirect('tags')
                 ->withErrors($validator)
                 ->withInput();
         } else {
-            $category = new Category();
-            $category->name = $request->input('name');
-            $category->save();
+            $tag = new Tag();
+            $tag->name = $request->input('name');
+            $tag->save();
         }
-        return redirect('categories/show');
+        return redirect('tags');
     }
 
     public function show()
@@ -48,20 +50,41 @@ class TagController extends Controller
 
     }
 
-    public function softdelete($id){
-
+    public function softdelete($id)
+    {
+        $tag = Tag::withTrashed()->find($id);
+        $tag->delete();
+        return redirect('tags');
     }
-    public function activate($id){
 
+    public function activate($id)
+    {
+        $tag = Tag::withTrashed()->find($id);
+        $tag->deleted_at = null;
+        $tag->save();
+        return redirect('tags');
     }
+
     public function edit()
     {
 
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-
+        $validator = validator($request->all(), [
+            'name' => 'required|unique:tags',
+        ]);
+        if ($validator->fails()) {
+            return redirect('tags')
+                ->withErrors($validator)
+                ->withInput();
+        } else {
+            $tag = Tag::withTrashed()->find($id);
+            $tag->name = $request->input('name');
+            $tag->save();
+        }
+        return redirect('tags');
     }
 
     public function destroy()

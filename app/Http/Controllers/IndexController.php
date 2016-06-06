@@ -24,9 +24,9 @@ class IndexController extends Controller
         $categorys = Category::all();
         $tags = Tag::all();
         if ($request->pjax()) {
-            return view('index.pindex')->with(['articles' => $articles, 'categorys' => $categorys,'tags'=>$tags]);
+            return view('index.pindex')->with(['articles' => $articles, 'categorys' => $categorys, 'tags' => $tags]);
         } else {
-            return view('index.index')->with(['articles' => $articles, 'categorys' => $categorys,'tags'=>$tags]);
+            return view('index.index')->with(['articles' => $articles, 'categorys' => $categorys, 'tags' => $tags]);
         }
 
 
@@ -43,10 +43,10 @@ class IndexController extends Controller
                 'articles' => $articles,
                 'particles' => $particles,
                 'categorys' => $categorys,
-                'tags'=>$tags
+                'tags' => $tags
             ]);
         } else {
-            return view('index.blog')->with(['articles' => $articles, 'particles' => $particles, 'categorys' => $categorys,'tags'=>$tags]);
+            return view('index.blog')->with(['articles' => $articles, 'particles' => $particles, 'categorys' => $categorys, 'tags' => $tags]);
         }
     }
 
@@ -57,9 +57,9 @@ class IndexController extends Controller
         $detail = Article::withTrashed()->find($id);
         $tags = Tag::all();
         if ($request->pjax()) {
-            return view('index.pdetail')->with(['articles' => $articles, 'categorys' => $categorys, 'detail' => $detail,'tags'=>$tags]);
+            return view('index.pdetail')->with(['articles' => $articles, 'categorys' => $categorys, 'detail' => $detail, 'tags' => $tags]);
         } else {
-            return view('index.detail')->with(['articles' => $articles, 'categorys' => $categorys, 'detail' => $detail,'tags'=>$tags]);
+            return view('index.detail')->with(['articles' => $articles, 'categorys' => $categorys, 'detail' => $detail, 'tags' => $tags]);
         }
     }
 
@@ -68,9 +68,14 @@ class IndexController extends Controller
 
     }
 
-    public function message()
+    public function message(Request $request)
     {
-        return view('index.message');
+        
+        if ($request->pjax()) {
+            return view('index.pmessage');
+        } else {
+            return view('index.message');
+        }
     }
 
     public function edit()

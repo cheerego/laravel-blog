@@ -22,15 +22,15 @@
                         &times;
                     </button>
                     <h4 class="modal-title" id="myModalLabel">
-                        Add Tag
+                        Add Category
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ url('categories') }}" method="post">
+                    <form action="{{ url('tags') }}" method="post">
                         {{ csrf_field() }}
                         {{ method_field('POST') }}
                         <div class="form-group label-floating">
-                            <label class="control-label" for="focusedInput2">Category Name</label>
+                            <label class="control-label" for="focusedInput2">Tag Name</label>
                             <input class="form-control" name="name" id="focusedInput2" type="text">
                             <p class="help-block">为了统一格式,建议首字母大写😂</p>
                         </div>
@@ -67,11 +67,11 @@
                 <td>{{ count($tag->articles) }}</td>
                 <td>
                     @if(empty($tag->deleted_at))
-                        <a href="{{ url("categories/softdelete/".$tag->id) }}" class="btn btn-raised btn-warning btn-xs">
+                        <a href="{{ url("tags/softdelete/".$tag->id) }}" class="btn btn-raised btn-warning btn-xs">
                             Delete
                         </a>
                     @else
-                        <a href="{{ url("categories/reactivate/".$tag->id) }}" class="btn btn-raised btn-info btn-xs">
+                        <a href="{{ url("tags/reactivate/".$tag->id) }}" class="btn btn-raised btn-info btn-xs">
                             {{ $tag->deleted_at->diffForHumans() }}
                         </a>
                     @endif
@@ -90,11 +90,11 @@
                                         &times;
                                     </button>
                                     <h4 class="modal-title" id="myModalLabel">
-                                        Add Category
+                                        Add Tags
                                     </h4>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="{{ url('categories',[$tag->id]) }}" method="post">
+                                    <form action="{{ url('tags',[$tag->id]) }}" method="post">
                                         {{ csrf_field() }}
                                         {{ method_field('PUT') }}
                                         <div class="form-group label-floating">
@@ -121,5 +121,5 @@
         @endforeach
         </tbody>
     </table>
-    {!! $ptag->render() !!}
+    {!! $ptags->render() !!}
 @endsection

@@ -1,15 +1,9 @@
 @extends('layouts.home')
 @section('content')
-
-    <div>
-        如果你也听说
-    </div><div class="jumbotron">
-        <h1>Jumbotron</h1>
-
-        <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-
-        <p><a class="btn btn-primary btn-lg">Learn more</a></p>
-    </div>
-
+    <h3>尊敬的Vip用户 {{ Auth::user()->name }},您好!</h3>
+    <h4>欢迎您来到Blog Dashboard!</h4>
+    <p class="alert alert-danger">
+        文章只要有了类别后才可以提交哦!
+    </p>
 @endsection
 

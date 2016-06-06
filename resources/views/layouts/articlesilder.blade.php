@@ -23,8 +23,7 @@
             还没有添加类别!
         @else
             @foreach($categorys as $category)
-                <a href=""><span style="float: left;">{{ $category->name }} ({{ count($category->articles) }}
-                        )</span></a>
+                <a href=""><span style="float: left;">{{ $category->name }} ({{ count($category->articles) }})</span></a>
                 <br>
             @endforeach
         @endif

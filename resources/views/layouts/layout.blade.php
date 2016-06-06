@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {{--<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">--}}
     {{--<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">--}}
-
+    <script src="//cdn.bootcss.com/showdown/1.4.1/showdown.js"></script>
+    <script src="//cn.vuejs.org/js/vue.js"></script>
     <link rel="stylesheet" href="{{ asset('bower_components') }}/bootstrap/dist/css/bootstrap.css">
     <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.css" rel="stylesheet">
@@ -39,6 +40,8 @@
 <script src="{{ asset('bower_components') }}/bootstrap-material-design/dist/js/ripples.js"></script>
 <script src="{{ asset('bower_components') }}/snackbarjs/dist/snackbar.min.js"></script>
 <script src="{{ asset('bower_components') }}/nprogress/nprogress.js"></script>
+<script src="//cdn.bootcss.com/showdown/1.4.1/showdown.js"></script>
+<script src="//cn.vuejs.org/js/vue.js"></script>
 @yield('scriptbottom')
 <script !src="">
     $(document).ready(function () {

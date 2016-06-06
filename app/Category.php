@@ -10,7 +10,9 @@ class Category extends Model
     use SoftDeletes;
     protected $fillable = ['name'];
     protected $dates = ['deleted_at'];
-    public function articles(){
-       return $this->hasMany('App\Article','id');
+
+    public function articles()
+    {
+        return $this->belongsTo('App\Article','id','category_id');
     }
 }

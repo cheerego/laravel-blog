@@ -49,7 +49,7 @@
     var editor = new Vue({
         el: '#editor',
         data: {
-            input: 'Leave a message',
+            input: '## 正在施工中.....',
             position: null,
             textarea: document.querySelector('textarea')
         },

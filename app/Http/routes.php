@@ -12,11 +12,12 @@
 */
 
 
-Route::get('/', 'IndexController@index');
+Route::get('/', 'IndexController@blog');
 Route::get('blog','IndexController@blog');
 Route::get('message','IndexController@message');
 Route::get('aboutme','IndexController@aboutme');
 Route::get('detail/{id}','IndexController@details');
+Route::get('blog/findArticlesByCategory/{id}','IndexController@findarticlesbycategory');
 
 
 Route::auth();

@@ -96,6 +96,22 @@ class IndexController extends Controller
     {
 
     }
-
-
+    public function findarticlesbycategory(Request $request,$id)
+    {
+        $articles = Article::limit(5)->createdat()->get();
+        $particles = Category::find($id)->articles->simplePaginate(10);
+        $categorys = Category::all();
+        $tags = Tag::all();
+       
+        if ($request->pjax()) {
+            return view('index.pblog')->with([
+                'articles' => $articles,
+                'particles' => $particles,
+                'categorys' => $categorys,
+                'tags' => $tags
+            ]);
+        } else {
+            return view('index.blog')->with(['articles' => $articles, 'particles' => $particles, 'categorys' => $categorys, 'tags' => $tags]);
+        }
+    }
 }

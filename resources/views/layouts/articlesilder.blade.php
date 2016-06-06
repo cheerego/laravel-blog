@@ -23,8 +23,15 @@
             还没有添加类别!
         @else
             @foreach($categorys as $category)
-                <a href=""><span style="float: left;">{{ $category->name }} ({{ count($category->articles) }})</span></a>
-                <br>
+                @if(count($category->articles) == 0 )
+                    <a href="javascript:void(0)"><span style="float: left;">{{ $category->name }}
+                            ({{ count($category->articles) }})</span></a>
+                    <br>
+                @else
+                    <a href="{{ url('blog/findArticlesByCategory',[$category->id]) }}"><span style="float: left;">{{ $category->name }}
+                            ({{ count($category->articles) }})</span></a>
+                    <br>
+                @endif
             @endforeach
         @endif
     </div>

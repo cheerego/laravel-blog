@@ -68,8 +68,9 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Follow me</div>
                 <div class="panel-body text-center">
-                    <a href="http://www.baidu.com"><i class="fa fa-github fa-3x fa-spin"></i></a>
-                    <a href=""><i class="fa fa-weibo fa-3x fa-spin"></i></a>
+                    <a href="https://github.com/cheerplaceless"><i class="fa fa-github fa-3x fa-spin"></i></a>
+                    <a href="http://weibo.com/u/1767872324"><i class="fa fa-weibo fa-3x fa-spin"></i></a>
+                    <a href="http://weibo.com/u/1767872324"><img src="{{ asset('image') }}/32.png" alt=""></a>
                 </div>
             </div>
             <!--3-->

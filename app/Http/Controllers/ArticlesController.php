@@ -47,10 +47,12 @@ class ArticlesController extends Controller
         } else {
             $article = Article::create([
                 'title' => request('title'),
+                'content'=>request('content'),
                 'html' => request('html'),
                 'category_id' => request('category'),
                 'author' => \Auth::user()->name,
             ]);
+     
             $tags = request('tags');
             if (!empty($tags)) {
                 foreach ($tags as $tag) {
@@ -60,7 +62,7 @@ class ArticlesController extends Controller
         }
         $categorys = Category::all();
 
-        return redirect()->action('ArticlesController@create');
+        return redirect()->action('IndexController@details',[$article->id]);
     }
 
     /**
@@ -87,6 +89,7 @@ class ArticlesController extends Controller
         } else {
             $article = Article::withTrashed()->find($id);
             $article->title = $request->input('title');
+            $article->content = $request->input('content');
             $article->html = $request->input('html');
             $article->category_id = $request->input('category');
             $article->save();

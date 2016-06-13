@@ -9,7 +9,7 @@ class Article extends Model
 {
     //
     use SoftDeletes;
-    protected $fillable = ['title', 'html', 'author', 'category_id'];
+    protected $fillable = ['title', 'html', 'author', 'category_id','content'];
     protected $dates = ['deleted_at','published_at'];
 
     public function scopeCreatedAt($query)

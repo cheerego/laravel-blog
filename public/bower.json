@@ -18,9 +18,7 @@
     "jquery": "^2.2.3",
     "bootstrap-material-design": "^0.5.9",
     "snackbarjs": "https://github.com/FezVrasta/snackbarjs.git#^1.1.0",
-    "simditor": "^2.3.6",
     "nprogress": "^0.2.0",
-    "simditor-emoji": "https://github.com/mycolorway/simditor-emoji.git#^2.1.1",
     "jquery-pjax": "^1.9.6",
     "select2": "https://github.com/select2/select2.git#^4.0.3"
   }

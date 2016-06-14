@@ -43,6 +43,7 @@ class ImagesController extends Controller
                 $new = $file->move($dir,$name);
                 Image::create([
                     'path' => $asset_path . '/' . $name,
+                    'name'=>$name
                 ]);
             }
         }

@@ -66,9 +66,8 @@
             @foreach ($images as $image)
                 <tr>
                     <td>{{ $image->id }}</td>
-                    <td>{{ $image->path }}</td>
-                    <td><img src="{{ $image->path }}" width="300"></td>
-                    <td></td>
+                    <td>{{ asset($image->path) }}</td>
+                    <td><img src="{{ asset($image->path) }}" width="300"></td>
                 </tr>
             @endforeach
             </tbody>

@@ -2,12 +2,19 @@
 ## Blog 地址:115.28.155.116/laravel-blog/public
 
 使用laravel进行编写
+
 前端使用:
+
 [MaterialDesignBootstrap](http://fezvrasta.github.io/bootstrap-material-design/)
+
 [Pjax](https://github.com/defunkt/jquery-pjax)
+
 Markdown编辑器使用Vue.js与Showdown.js
+
 服务端使用:
+
 不管是Nginx还是Apache都需要进行重写
+
 MySQL
 ##使用说明
 下载:
@@ -36,6 +43,10 @@ DB_PORT=3306
 DB_DATABASE=your databasename
 DB_USERNAME=root
 DB_PASSWORD=
+```
+创建数据库:
+```
+不管用什么方式创建都可以,但是需要与.env中的DB_DATABASE设置保持一致
 ```
 创建表:
 ```

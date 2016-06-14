@@ -196,7 +196,9 @@
                 <a @click="right" class="icon icon-right"></a>
             </p>
 
-            <textarea v-model="input" debounce="500" style="display: inline-block" rows="16" autofocus required class=''>{{ $article->content }}</textarea>
+            <textarea v-model="input" debounce="500" style="display: inline-block" rows="16" autofocus required >
+                {{ $article->content }}
+            </textarea>
             <input type="hidden" name="content" v-model="input">
             <input type="hidden" name="html" v-model="output">
             <div>@{{{ output }}}</div>
@@ -211,6 +213,7 @@
         {{ csrf_field() }}
         {{ method_field('PUT') }}
     </form>
+    <textarea style="display: none" id="content" cols="30" rows="10">{{ $article->content }}</textarea>
     @if($errors->any())
         <ul class="alert alert-danger">
             @foreach($errors->all() as $error)
@@ -225,19 +228,25 @@
     <script type="text/javascript" src="{{ asset('bower_components') }}/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="{{ asset('bower_components') }}/select2/dist/js/select2.full.min.js"></script>
     <script src="//cdn.bootcss.com/showdown/1.4.1/showdown.js"></script>
-    <script src="http://cn.vuejs.org/js/vue.js"></script>
+    <script src="{{ asset('vue-csp') }}/vue.js"></script>
 @endsection
 
 
 @section('scriptcode')
     <script !src="">
+        function escape2Html(str) {
+            var arrEntities={'lt':'<','gt':'>','nbsp':' ','amp':'&','quot':'"'};
+            return str.replace(/&(lt|gt|nbsp|amp|quot);/ig,function(all,t){return arrEntities[t];});
+        }
+        var $content = document.querySelector('#content');
+        var articlecontent = $content.innerHTML;
         var editor = new Vue({
             el: '#editor',
             data: {
-                input:  '' ,
+                input:escape2Html(articlecontent),
                 position: null,
                 textarea: document.querySelector('textarea'),
-                converter : new showdown.Converter()
+                converter : new showdown.Converter(),
             },
             methods: {
                 positionLinstener: function () {
@@ -361,7 +370,8 @@
                 }
             }
         });
-        editor.input='{{ $article->content }}'
+
+
 
         var autoTextarea = function (elem, extra, maxHeight) {
             extra = extra || 0;
@@ -437,6 +447,11 @@
                     placeholder: "Tags",
                 }
         );
+
+
+
+
+
     </script>
 
 

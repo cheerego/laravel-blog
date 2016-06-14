@@ -39,7 +39,7 @@ class ImagesController extends Controller
 
                 $dir  = public_path('upload');
                 $asset_path = asset('upload');
-                $name = Carbon::now().".$extension";
+                $name = date('Y-m-dH:i:s').".$extension";
                 $new = $file->move($dir,$name);
                 Image::create([
                     'path' => $asset_path . '/' . $name,
@@ -48,7 +48,7 @@ class ImagesController extends Controller
         }
 
         return redirect()->back();
-        
+
 
     }
 

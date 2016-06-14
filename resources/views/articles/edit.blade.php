@@ -39,7 +39,7 @@
             font-family: 'Monaco', courier, monospace;
             display: inline-block;
             border: 0;
-            padding: 0;
+            padding: 1px;
             width: 50%;
             resize: none;
         }
@@ -51,6 +51,7 @@
             vertical-align: top;
             width: 49%;
             height: 100%;
+            min-height: 320px;
         }
 
         .icon-bold {

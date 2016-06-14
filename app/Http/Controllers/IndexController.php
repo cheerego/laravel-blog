@@ -52,6 +52,9 @@ class IndexController extends Controller
 
     public function details(Request $request, $id)
     {
+        if (!is_numeric($id) || is_null($id)) {
+            abort('404');
+        }
         $articles = Article::limit(5)->createdat()->get();
         $categorys = Category::all();
         $detail = Article::withTrashed()->find($id);

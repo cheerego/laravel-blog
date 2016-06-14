@@ -52,6 +52,9 @@ class TagController extends Controller
 
     public function softdelete($id)
     {
+        if (!is_numeric($id) || is_null($id)) {
+            abort('404');
+        }
         $tag = Tag::withTrashed()->find($id);
         $tag->delete();
         return redirect('tags');
@@ -59,6 +62,9 @@ class TagController extends Controller
 
     public function activate($id)
     {
+        if (!is_numeric($id) || is_null($id)) {
+            abort('404');
+        }
         $tag = Tag::withTrashed()->find($id);
         $tag->deleted_at = null;
         $tag->save();

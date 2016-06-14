@@ -1,4 +1,4 @@
-<header >
+<header>
     <div class="navbar navbar-info ">
         <div class="container-fluid margin">
             <div class="navbar-header">
@@ -12,7 +12,7 @@
             </div>
             <div class="navbar-collapse collapse navbar-responsive-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a class="pjax" href="{{ url('blog') }}" >Blog</a></li>
+                    <li><a class="pjax" href="{{ url('blog') }}">Blog</a></li>
                     <li><a class="pjax" href="javascript:void(0)">Toys</a></li>
                     <li><a class="pjax" href="{{url('message')}}">Message<span class="badge">3</span></a></li>
                     <li><a class="pjax" href="{{ url('aboutme') }}">About me</a></li>
@@ -21,9 +21,9 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         @if(Auth::check())
-                        <a href="{{ url('/dashboard') }}">
-                            {{ Auth::user()->name }}
-                        </a>
+                            <a href="{{ url('/dashboard') }}">
+                                {{ Auth::user()->name }}
+                            </a>
                         @endif
                     </li>
                     <li class="dropdown">
@@ -34,8 +34,14 @@
                             <li><a href="javascript:void(0)">Github</a></li>
                             <li><a href="javascript:void(0)">Sina Weibo</a></li>
                             <li><a href="javascript:void(0)">Segmentfault</a></li>
-                            <li><a href="{{ action('Auth\AuthController@login') }}">Login</a></li>
-                            <li><a href="{{ action('Auth\AuthController@logout') }}">Logout</a></li>
+                            @if(Auth::check())
+                                <li><a href="{{ action('Auth\AuthController@logout') }}">Logout</a></li>
+                            @else
+                                <li><a href="{{ action('Auth\AuthController@login') }}">Login</a></li>
+                            @endif
+
+
+
                         </ul>
                     </li>
                 </ul>

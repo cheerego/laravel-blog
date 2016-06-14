@@ -3,15 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Article;
-use App\ArticleTag;
 use App\Category;
 use App\Http\Middleware\Authenticate;
+use App\Image;
 use App\Tag;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use Illuminate\Support\Facades\DB;
 
 class ArticlesController extends Controller
 {
@@ -52,7 +50,7 @@ class ArticlesController extends Controller
                 'category_id' => request('category'),
                 'author' => \Auth::user()->name,
             ]);
-     
+
             $tags = request('tags');
             if (!empty($tags)) {
                 foreach ($tags as $tag) {
@@ -73,7 +71,8 @@ class ArticlesController extends Controller
     {
         $categorys = Category::all();
         $tags = Tag::all();
-        return view('articles.create')->with(['categorys' => $categorys, 'tags' => $tags]);
+        $images = Image::orderBy('created_at', 'desc')->paginate(10);
+        return view('articles.create')->with(['categorys' => $categorys, 'tags' => $tags,'images'=>$images]);
     }
 
     public function update(Request $request, $id)
@@ -151,6 +150,9 @@ class ArticlesController extends Controller
 
     public function reactivate($id)
     {
+        if (!is_numeric($id) || is_null($id)) {
+            abort('404');
+        }
         $article = Article::withTrashed()->find($id);
         if (!$article) {
             abort(404);

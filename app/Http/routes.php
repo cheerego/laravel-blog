@@ -41,3 +41,6 @@ Route::resource('articles', 'ArticlesController');
 Route::get('tags/softdelete/{id}', "TagController@softdelete");
 Route::get('tags/reactivate/{id}', "TagController@activate");
 Route::resource('tags', 'TagController');
+
+//image
+Route::resource('images', 'ImagesController');

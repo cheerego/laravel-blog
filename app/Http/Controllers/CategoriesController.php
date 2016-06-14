@@ -53,6 +53,9 @@ class CategoriesController extends Controller
     }
     
     public function softdelete($id){
+        if (!is_numeric($id) || is_null($id)) {
+            abort('404');
+        }
         $category = Category::withTrashed()->find($id);
         $category->delete();
         return redirect('categories/show');
@@ -70,6 +73,9 @@ class CategoriesController extends Controller
 
     public function update(Request $request,$id)
     {
+        if (!is_numeric($id) || is_null($id)) {
+            abort('404');
+        }
         $validator = validator($request->all(), [
             'name' => 'required|unique:categories',
         ]);

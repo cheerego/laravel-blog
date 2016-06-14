@@ -31,7 +31,6 @@
             padding: 5px;
             border-bottom: 1px solid #ccc;
         }
-
         #editor > textarea {
 
             outline: none;
@@ -169,7 +168,6 @@
 @section('content')
     <form action="{{ action('ArticlesController@store') }}" method="post" enctype="multipart/form-data">
         <input type="text" placeholder="Title" class="form-control" name="title" required value="{{ old('title') }}">
-
         <label for="" class="label label-success">Categorise:</label>
         <select class="form-control" name="category" id="">
             @foreach($categorys as $category )

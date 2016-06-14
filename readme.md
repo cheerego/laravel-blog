@@ -1,28 +1,80 @@
-###https://cheerplaceless.github.io/laravel-blog/
 # Laravel PHP Framework
+## Blog 地址:115.28.155.116/laravel-blog/public
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+使用laravel进行编写
+前端使用:
+[MaterialDesignBootstrap](http://fezvrasta.github.io/bootstrap-material-design/)
+[Pjax](https://github.com/defunkt/jquery-pjax)
+Markdown编辑器使用Vue.js与Showdown.js
+服务端使用:
+不管是Nginx还是Apache都需要进行重写
+MySQL
+##使用说明
+下载:
+```
+$ git clone https://github.com/cheerplaceless/laravel-blog.git
+```
+加载依赖:
+```
+$ cd laravel-blog
+$ composer install
+$ cd public
+$ bower install
+```
+目录权限配置:
+```
+$ chmod -R 777 storge
+$ chmod -R 777 bootstrap/cache
+```
+数据库配置:
+```
+vim .env
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+DB_CONNECTION=mysql
+DB_HOST=yourhost
+DB_PORT=3306
+DB_DATABASE=your databasename
+DB_USERNAME=root
+DB_PASSWORD=
+```
+创建表:
+```
+$ php artisan migrate
+```
+Rewrite:
+```
+.htaccess:
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews
+    </IfModule>
+    Options +FollowSymLinks
+    RewriteEngine On
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)/$ /$1 [L,R=301]
 
-## Official Documentation
+    # Handle Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+</IfModule>
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+nginx:
+  location /laravel-blog/public/ {
+  if (!-e $request_filename)
+  {
+       rewrite  ^/laravel-blog/public/(.*)$  /laravel-blog/public/index.php?s=$1  last;
+  }
+            #try_files $uri $uri/ /index.php?$query_string;
+  }
+```
+##发布到服务器
+个人blog 修改app/Http/route.php 注释掉auth路由Route::auth();仅仅保留login
+##关于
+因为仅仅写了一个多星期,所以还有些地方存在不足,会在后续进行一些更改

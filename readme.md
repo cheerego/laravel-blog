@@ -26,11 +26,13 @@ $ cd laravel-blog
 $ composer install
 $ cd public
 $ bower install
-$ mkdir upload
-$ chmod -R 777 upload
 ```
 目录权限配置:
 ```
+$ cd public
+$ mkdir upload
+$ chmod -R 777 upload
+$ cd ..
 $ chmod -R 777 storge
 $ chmod -R 777 bootstrap/cache
 ```

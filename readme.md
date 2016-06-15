@@ -85,6 +85,6 @@ nginx:
   }
 ```
 ##发布到服务器
-个人blog 修改app/Http/route.php 注释掉auth路由Route::auth();仅仅保留login
+个人blog 修改app/Http/route.php 注释掉auth路由Route::auth();仅仅保留login和logout
 ##关于
 因为仅仅写了一个多星期,所以还有些地方存在不足,会在后续进行一些更改

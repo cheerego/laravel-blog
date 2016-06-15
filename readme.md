@@ -1,6 +1,5 @@
-# Laravel PHP Framework
-## Blog 地址:115.28.155.116/laravel-blog/public
-
+## Laravel Blog 
+### 地址:115.28.155.116/laravel-blog/public
 使用laravel进行编写
 
 前端使用:

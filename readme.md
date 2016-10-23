@@ -33,7 +33,7 @@ $ cd public
 $ mkdir upload
 $ chmod -R 777 upload
 $ cd ..
-$ chmod -R 777 storge
+$ chmod -R 777 storage
 $ chmod -R 777 bootstrap/cache
 ```
 数据库配置:

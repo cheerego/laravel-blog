@@ -24,7 +24,6 @@ $ git clone https://github.com/cheerplaceless/laravel-blog.git
 ```
 $ cd laravel-blog
 $ composer install
-$ cd public
 $ bower install
 ```
 目录权限配置:

@@ -218,7 +218,7 @@
 
 @section('scriptbottom')
     <script src="//cdn.bootcss.com/showdown/1.4.1/showdown.js"></script>
-    <script src="http://cn.vuejs.org/js/vue.js"></script>
+    <script src="{{asset('vue-csp/vue.js')}}"></script>
     <script type="text/javascript" src="{{ asset('bower_components') }}/select2/dist/js/select2.full.min.js"></script>
 @endsection
 

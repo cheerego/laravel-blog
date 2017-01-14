@@ -13,11 +13,11 @@
 
 
 Route::get('/', 'IndexController@blog');
-Route::get('blog','IndexController@blog');
-Route::get('message','IndexController@message');
-Route::get('aboutme','IndexController@aboutme');
-Route::get('detail/{id}','IndexController@details');
-Route::get('blog/findArticlesByCategory/{id}','IndexController@findarticlesbycategory');
+Route::get('blog', 'IndexController@blog');
+Route::get('message', 'IndexController@message');
+Route::get('aboutme', 'IndexController@aboutme');
+Route::get('detail/{id}', 'IndexController@details');
+Route::get('blog/findArticlesByCategory/{id}', 'IndexController@findarticlesbycategory');
 
 
 Route::auth();
@@ -56,3 +56,14 @@ Route::resource('tags', 'TagController');
 
 //image
 Route::resource('images', 'ImagesController');
+
+
+//vue
+Route::group(['middleware' => 'cors'], function () {
+    Route::get('api/getonepost/{id}','ApiController@getOnePost');
+    Route::get('api/loadmore', 'ApiController@loadmore');
+    Route::get('api/getcatebypost/{id}','ApiController@getCategoryByPostId');
+    Route::get('api/gettagsbypost/{id}','ApiController@getTagsByPostId');
+    Route::get('api/getpost/{id}','ApiController@getOnePost');
+    Route::get('api/gettags','ApiController@getAllTags');
+});

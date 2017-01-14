@@ -197,7 +197,7 @@
             </p>
 
             <textarea v-model="input" debounce="500" style="display: inline-block" rows="16" autofocus required >
-                {{--{{ $article->content }}--}}
+                {{ $article->content }}
             </textarea>
             <input type="hidden" name="content" v-model="input">
             <input type="hidden" name="html" v-model="output">
@@ -243,7 +243,7 @@
         var editor = new Vue({
             el: '#editor',
             data: {
-                input:escape2Html(`{{ $article->content }}`),
+                input:'',
                 position: null,
                 textarea: document.querySelector('textarea'),
                 converter : new showdown.Converter(),
@@ -370,7 +370,6 @@
                 }
             }
         });
-
 
 
         var autoTextarea = function (elem, extra, maxHeight) {

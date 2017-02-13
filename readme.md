@@ -1,5 +1,5 @@
 ## Laravel Blog 
-### 地址:115.28.155.116/laravel-blog/public
+## 该博客系统的单页部分https://github.com/cheerzz/vue-spa-blog
 使用laravel进行编写
 
 前端使用:
